@@ -1,0 +1,23 @@
+After downloading the files:
+  .synopsys_dc.setup file
+   design vision script file: dv_script
+   test.sv file
+
+Make a work directory:
+  vlib work
+
+If vlib is not found, your $PATH is most like broken.
+Either edit your .cshrc file to include /usr/local/apps/bin
+or execute: /usr/local/bin/getdotfiles to fix it.
+
+Check for syntax errors with the modelsim compiler:
+  vlog test.sv
+
+Synthesize the design by running the script within the tool:
+Invoke:  design_vision-xg 
+Once the tool is up, in the transcript window (design_vision>) below, type:
+  source dv_script
+
+Once synthesis is done, click on the "H" box in the "Logical Hierarchy" area.
+Then click on the schematic box in the tool bar just under and to the left of
+"Design". Double click into the box to see down the hierarchy.   

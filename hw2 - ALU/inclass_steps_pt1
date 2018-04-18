@@ -1,0 +1,102 @@
+login to Linux machine such as flip.engr. You must have x tunneling enabled.
+make a working area, for example: "mkdir scratch"
+wget the files needed: 
+wget http://web.engr.oregonstate.edu/~traylor/ece474/inclass/wk1/fadder.sv
+                                                                 comp_lib.sh
+                                                                 doit.sh
+                                                                 .synopsys_dc.setup
+                                                                 syn_script_rt
+                                                                 fadder.do.save
+
+or curl the files:
+curl http://web.engr.oregonstate.edu/~traylor/ece474/inclass/wk1/fadder.sv > fadder.sv
+etc....
+
+You now should have 6 files downloaded. Check to make sure.
+
+for help on vi, see: 
+   http://web.engr.oregonstate.edu/~traylor/ece473/lectures/programming_editor_vi.pdf
+
+make work directory for vsim:        "vlib work"
+compile sverilog file:               "vlog fadder.sv"
+simulate the rtl version of fadder:  "vsim -novopt fadder"
+
+To do the simulation you will need to tell the simulator (in transcript window):
+  view signals
+  add wave -r /*
+  force a 0
+  force b 0
+  force cin 0
+  run 10ns
+
+Force a and or b to logic one and step the simulator forwards another 10ns to
+view the results. Play with setting the value of a an b and seeing the results.
+Use your middle mouse button to zoom into the waveform screen.
+
+Under the Transcript window select File > Save Transcript.
+
+Now quit the simulator.  "quit -f"
+
+Once back in the Linux shell, open "transcript".  What is in there?
+
+Now, let's make a do file to run the simulation.  
+
+Initially, you downloaded my dofile, fadder.do.save. Another way to create 
+your own do file is to save selected contents of the transcript and copy that 
+to a new file.  This time however, we can use the copy of mine.
+
+Take a look in the file fadder.do.save. Mentor calls its TCL files that run
+its tools "do files".  What commands are in the vsim do file, fadder.do.save?
+
+Restart simulator with do file argument:
+  vsim -novopt -do fadder.do.save  fadder
+
+Take a look at the results.  Zoom in and observe the behavior.  Open the
+do file from within vsim. "File -> Open -> fadder.do.save" (view all files)
+
+Note that the simulator has a shell interpreter much line the Linux prompt.
+At the simulator prompt, you can type: ls, pwd, date, etc as in the bash shell
+prompt. Check out this month's calendar with the UNIX command "cal".
+
+Then quit vism with: "quit -f" (force quit with no query)
+
+What you have done is to observe the behavior of a sverilog half adder module.  
+The source file was compiled to a form the simulator could run.  We then 
+applied stimulus to the design with a "do file" and observed the results.
+
+The design has no gates in it at this point. There are no propagation delays either.  
+Now, lets move to a synthesized design.
+
+Copy my "syn_script_rt" to your own copy "syn_script" 
+This is another TCL script for the Synopsys synthesis tool "design_vision-xg" .
+Take a look inside it.  You should see:
+
+    read_sverilog  fadder.sv
+    compile
+    report_timing
+    report_area
+    write -format verilog -hierarchy -output fadder.gate.v
+    #quit!
+
+Invoke the synthesis tool: design_vision-xg -f syn_script
+
+It will read the TCL script we just wrote and synthesize the circuit and produce
+the reports.  Look at the synthesized design by clicking the gate symbol near the 
+top of the window under the Hierarchy pulldown.
+
+Read the information produced about the size of the design and its delays and look 
+at the schematic. You can see the information produced in the invoking window or 
+within the tool gui. Look at the number and type of cells used by typing report_cell 
+in the command window. Note that this tool operates from both gui input as well as
+a shell prompt for more interactive usage.
+
+Quit from design_vision-xf.  (quit!)
+
+Go look at the synthesized version of your design in fadder.gate.v.  Compare it
+with fadder.sv.  How are they different?
+
+Change the line in your syn_script that says "compile" to "compile_ultra".
+Repeat your synthesis run from the shell.
+
+See new reports, schematic and note any improvements.
+

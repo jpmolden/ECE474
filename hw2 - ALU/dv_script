@@ -1,6 +1,14 @@
-read_sverilog  test.sv 
+read_sverilog  alu.sv
 compile
 #report_timing
-#report_area   
+#report_area
 #write -format verilog -hierarchy -output test.v
 #quit!
+
+
+#read_sverilog  test.sv
+#compile
+##report_timing
+##report_area
+##write -format verilog -hierarchy -output test.v
+##quit!

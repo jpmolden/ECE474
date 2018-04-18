@@ -1,0 +1,71 @@
+Inclass_steps part 2
+
+login to Linux machine such as flip.engr
+go to your working area: "cd scratch"
+
+for help on vi, see: 
+   http://web.engr.oregonstate.edu/~traylor/ece473/lectures/programming_editor_vi.pdf
+
+If you haven't already, create a synthesis (TCL) script with your editor 
+called syn_script.
+
+In it, put the following:
+ read_sverilog  fadder.sv
+ compile
+ report_timing
+ report_area
+ write -format verilog -hierarchy -output fadder.gate.v
+ #quit!
+
+Make sure you still do not have "compile_ultra" in your script from last time.
+Set the command back to simply "compile"
+
+Invoke the synthesis tool: design_vision-xg -f syn_script
+
+It will read the TCL script we just wrote and synthesize the circuit and produce
+the reports. Look at the synthesized design by clicking the gate symbol near the 
+top of the window under the View pulldown.
+
+In the transcript, read the information produced about the size of the design 
+and its delays and look at the schematic.  You can see the information produced 
+in the invoking window or within the tool gui. Look at the number and type of 
+cells used by typing report_cell in the command window.
+
+The combinatorial area is referenced to the size (um^2) of a 2-input NAND cell
+The library at:
+http://web.engr.oregonstate.edu/~traylor/ece474/reading/SAED_Cell_Lib_Rev1_4_20_1.pdf
+on page 34 gives the area of a NAND2X1 to be 5.53 um^2.  Dividing our design
+area by 5.53 gives the equivalent gate count of the design.
+
+Quit the synthesis tool. Using "vi" or "view" or "less", look at the new verilog file 
+(fadder.gate.v) created by synthesis.  What is different about this file and the one 
+you originally wrote?
+
+Go get the script, comp_lib.sh if you don't already have it:
+wget http://web.engr.oregonstate.edu/~traylor/ece474/inclass/wk1/comp_lib.sh
+
+Look at comp_lib script. What is going on? 
+What files exist at the location that synop_lib is being set to?
+(see below)
+
+---> Efficiently traverse directories by using "pushd"and "popd":  
+Instead of :  cd    <new_directory>, execute, 
+              pushd <new_directory>
+This pushes the current directory to a stack.
+When you are done at new_directory, execute, 
+              popd 
+and you are back where you initially started.
+--->
+
+What is in the files at the location:
+/nfs/guille/a1/cadlibs/synop_lib/SAED_EDK90nm/Digital_Standard_Cell_Library/verilog
+
+Why is the second step (vlog) taken in the script?  
+Compile cell library into work using comp_lib.sh.
+
+Compile the new image of the design (fadder.gate.v) and re-simulate.
+Note gate delays that are visible.
+
+Recap steps: why and when were things done?
+
+

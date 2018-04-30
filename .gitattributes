@@ -1,1 +1,2 @@
 *.md linguist-language=SystemVerilog
+*.md linguist-vendored

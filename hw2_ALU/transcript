@@ -12,10 +12,16 @@
 # //  18 U.S.C. Section 1905.
 # //
 # vsim -novopt alu 
-# Start time: 04:17:04 on Apr 18,2018
+# Start time: 01:50:23 on Apr 19,2018
 # ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
-# Refreshing /nfs/stak/users/moldenj/ECE474/hw2 - ALU/work.alu
 # Loading sv_std.std
 # Loading work.alu
-# End time: 04:22:02 on Apr 18,2018, Elapsed time: 0:04:58
-# Errors: 0, Warnings: 1
+do alu.do
+# ** Error: (vish-4014) No objects found matching '/alu/alu_out_int'.
+# Executing ONERROR command at macro ./wave.do line 9
+# ** Error: (vish-4014) No objects found matching '/alu/in_a_int'.
+# Executing ONERROR command at macro ./wave.do line 10
+# ** Error: (vish-4014) No objects found matching '/alu/in_b_int'.
+# Executing ONERROR command at macro ./wave.do line 11
+# End time: 01:58:02 on Apr 19,2018, Elapsed time: 0:07:39
+# Errors: 9, Warnings: 1

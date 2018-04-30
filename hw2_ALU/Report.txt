@@ -1,0 +1,52 @@
+ 
+****************************************
+Report : cell
+Design : alu
+Version: L-2016.03-SP2
+Date   : Thu Apr 19 02:56:43 2018
+****************************************
+
+Attributes:
+   BO - reference allows boundary optimization
+    b - black box (unknown)
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    u - contains unmapped logic
+
+Cell                      Reference       Library             Area  Attributes
+--------------------------------------------------------------------------------
+r30                       alu_DW01_addsub_0               360.343997
+                                                                    BO, h
+--------------------------------------------------------------------------------
+Total 1 cells                                             360.343997
+1
+ 
+****************************************
+Report : area
+Design : alu
+Version: L-2016.03-SP2
+Date   : Thu Apr 19 02:59:10 2018
+****************************************
+
+Library(s) Used:
+
+    saed90nm_typ (File: /nfs/guille/a1/cadlibs/synop_lib/SAED_EDK90nm/Digital_Standard_Cell_Library/synopsys/models/saed90nm_typ_pg.db)
+
+Number of ports:                           60
+Number of nets:                           204
+Number of cells:                          151
+Number of combinational cells:            149
+Number of sequential cells:                 1
+Number of macros/black boxes:               0
+Number of buf/inv:                         26
+Number of references:                      18
+
+Combinational area:               1474.433013
+Buf/Inv area:                      143.780005
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:              74.271335
+
+Total cell area:                  1474.433013
+Total area:                       1548.704348

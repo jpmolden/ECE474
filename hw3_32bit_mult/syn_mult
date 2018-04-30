@@ -1,0 +1,8 @@
+read_sverilog ./rtl_src/mult.sv
+link
+compile
+#report_timing
+#report_area
+#write list mult-gate.list
+write -format verilog -hierarchy -output mult.gate.v
+quit

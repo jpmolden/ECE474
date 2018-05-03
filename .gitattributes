@@ -1,2 +1,2 @@
 *.md linguist-vendored
-*.sv linguist-vendored=false
+wk1/* linguist-vendored

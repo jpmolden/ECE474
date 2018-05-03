@@ -1,2 +1,3 @@
 *.md linguist-vendored
 wk1/* linguist-vendored
+*.sv linguist-language=SystemVerilog

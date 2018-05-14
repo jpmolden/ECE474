@@ -1,8 +1,9 @@
 # ECE 474 Homework 4
 ## FIFO design - Designing with simple data and control paths
 
-[RTL_src](../rtl_src/fifo.sv)
-[testbench](../rtl_src/tb.sv)
+[RTL_src](../hw4_8x8_fifo/rtl_src/fifo.sv)
+
+[testbench](../hw4_8x8_fifo/rtl_src/tb.sv)
 
 
 ## Assignment outline

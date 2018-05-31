@@ -1,0 +1,21 @@
+ 
+****************************************
+Report : cell
+Design : tas
+Version: L-2016.03-SP2
+Date   : Mon May 28 06:51:30 2018
+****************************************
+
+Attributes:
+    b - black box (unknown)
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    u - contains unmapped logic
+
+Cell                      Reference       Library             Area  Attributes
+--------------------------------------------------------------------------------
+fifo1                     fifo                            4300.736990 h, n
+--------------------------------------------------------------------------------
+Total 1 cells                                             4300.736990
+1

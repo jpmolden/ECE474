@@ -1,0 +1,40 @@
+         ns   /fifo/wr_clk       /fifo/wr   /fifo/data_out                     
+                   /fifo/rd_clk       /fifo/rd      /fifo/empty                
+                       /fifo/reset_n   /fifo/data_in      /fifo/full           
+          0           1'h1 1'hz 1'h0 1'hz 1'hz 8'hzz 8'h00 1'h1 1'h0 
+          1           1'h1 1'hz 1'h0 1'hz 1'hz 8'hzz 8'h00 1'h1 1'h0 
+         50           1'h0 1'h1 1'h0 1'hz 1'hz 8'hzz 8'h00 1'h1 1'h0 
+        100           1'h1 1'h1 1'h1 1'hz 1'hz 8'hzz 8'h00 1'h1 1'h0 
+        101           1'h1 1'h1 1'h1 1'hz 1'hz 8'hzz 8'h00 1'h1 1'h0 
+        150           1'h0 1'h0 1'h1 1'hz 1'hz 8'hzz 8'h00 1'h1 1'h0 
+        200           1'h1 1'h0 1'h1 1'hz 1'hz 8'hzz 8'h00 1'hx 1'h0 
+        201           1'h1 1'h0 1'h1 1'hz 1'hz 8'hzz 8'h00 1'hx 1'h0 
+        250           1'h0 1'h1 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'h0 
+        300           1'h1 1'h1 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'h0 
+        301           1'h1 1'h1 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'h0 
+        350           1'h0 1'h0 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'h0 
+        400           1'h1 1'h0 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'h0 
+        401           1'h1 1'h0 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'h0 
+        450           1'h0 1'h1 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'h0 
+        500           1'h1 1'h1 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+        501           1'h1 1'h1 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+        550           1'h0 1'h0 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+        600           1'h1 1'h0 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+        601           1'h1 1'h0 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+        650           1'h0 1'h1 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+        700           1'h1 1'h1 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+        701           1'h1 1'h1 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+        750           1'h0 1'h0 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+        800           1'h1 1'h0 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+        801           1'h1 1'h0 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+        850           1'h0 1'h1 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+        900           1'h1 1'h1 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+        901           1'h1 1'h1 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+        950           1'h0 1'h0 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+       1000           1'h1 1'h0 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+       1001           1'h1 1'h0 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+       1050           1'h0 1'h1 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+       1100           1'h1 1'h1 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+       1101           1'h1 1'h1 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+       1150           1'h0 1'h0 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 
+       1200           1'h1 1'h0 1'h1 1'hz 1'hz 8'hzz 8'hxx 1'hx 1'hx 

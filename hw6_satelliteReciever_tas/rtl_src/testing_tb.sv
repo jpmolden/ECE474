@@ -1,4 +1,4 @@
-module tb;
+module testing_tb;
 //system verilog testbench for tas
 
 reg serial_data, data_ena, reset_n, clk_50, clk_2;
@@ -36,7 +36,7 @@ initial begin
   if (output_file==0) $display("ERROR : Cannot open file output_data");
 end
 
-tas tas_0(.*);  //instantiate tas module
+testing tas_0(.*);  //instantiate tas module
 
 task send_byte;
   input [7:0] in_byte;
@@ -114,8 +114,7 @@ begin
   data_ena = 1'b1; send_byte(8'h3A); data_ena = 1'b0; #(CYCLE_50*4);
   data_ena = 1'b1; send_byte(8'h55); data_ena = 1'b0; #(CYCLE_50*4);
   data_ena = 1'b1; send_byte(8'h43); data_ena = 1'b0; #(CYCLE_50*4);
-  data_ena = 1'b1; send_byte(8'h3C); data_ena = 1'b0; #(CYCLE_50);
-
+  data_ena = 1'b1; send_byte(8'h3C); data_ena = 1'b0; #(CYCLE_50*200);
 end
 endtask
 

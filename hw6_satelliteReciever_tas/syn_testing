@@ -3,6 +3,7 @@ link
 compile
 report_timing
 report_area
+report_cell
 #write list testing-gate.list
 write -format verilog -hierarchy -output testing.gate.v
 quit

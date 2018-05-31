@@ -1,433 +1,222 @@
 /////////////////////////////////////////////////////////////
-// Created by: Synopsys Design Compiler(R)
+// Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : L-2016.03-SP2
-// Date      : Wed May 30 23:44:30 2018
+// Date      : Thu May 31 00:11:12 2018
 /////////////////////////////////////////////////////////////
 
 
 module memory ( wr_clk, wr_pnt, data_in, wr, rd_pnt, full, rd_mem_out );
-  input [2:0] wr_pnt;
+  input [1:0] wr_pnt;
   input [7:0] data_in;
-  input [2:0] rd_pnt;
+  input [1:0] rd_pnt;
   output [7:0] rd_mem_out;
   input wr_clk, wr, full;
-  wire   N0, N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14,
-         \mem[7][7] , \mem[7][6] , \mem[7][5] , \mem[7][4] , \mem[7][3] ,
-         \mem[7][2] , \mem[7][1] , \mem[7][0] , \mem[6][7] , \mem[6][6] ,
-         \mem[6][5] , \mem[6][4] , \mem[6][3] , \mem[6][2] , \mem[6][1] ,
-         \mem[6][0] , \mem[5][7] , \mem[5][6] , \mem[5][5] , \mem[5][4] ,
-         \mem[5][3] , \mem[5][2] , \mem[5][1] , \mem[5][0] , \mem[4][7] ,
-         \mem[4][6] , \mem[4][5] , \mem[4][4] , \mem[4][3] , \mem[4][2] ,
-         \mem[4][1] , \mem[4][0] , \mem[3][7] , \mem[3][6] , \mem[3][5] ,
-         \mem[3][4] , \mem[3][3] , \mem[3][2] , \mem[3][1] , \mem[3][0] ,
-         \mem[2][7] , \mem[2][6] , \mem[2][5] , \mem[2][4] , \mem[2][3] ,
-         \mem[2][2] , \mem[2][1] , \mem[2][0] , \mem[1][7] , \mem[1][6] ,
-         \mem[1][5] , \mem[1][4] , \mem[1][3] , \mem[1][2] , \mem[1][1] ,
-         \mem[1][0] , \mem[0][7] , \mem[0][6] , \mem[0][5] , \mem[0][4] ,
-         \mem[0][3] , \mem[0][2] , \mem[0][1] , \mem[0][0] , N15, N16, N17,
-         N18, N19, N20, N21, N22, N23, N24, N25, N26, N27, N28, N29, N30, N31,
-         N32, N33, N34, N35, N36, N37, N38, N39, N40, N41, N42, N43, N44, N45;
+  wire   N5, N6, N7, N8, n22, n23, n24, n25, n26, n27, n28, n29, n30, n31, n32,
+         n33, n34, n35, n36, n37, n38, n39, n40, n41, n42, n43, n44, n45, n46,
+         n47, n48, n49, n50, n51, n52, n53, n1, n2, n3, n4, n5, n6, n7, n8, n9,
+         n10, n11, n12, n13, n14, n15, n16, n17, n18, n19, n20, n21, n54, n55,
+         n56, n57, n58, n59, n60, n61, n62, n63, n64, n65, n66, n67, n68, n69,
+         n70, n71, n72, n73, n74, n75, n76, n77, n78, n79, n80, n81, n82, n83,
+         n84, n85, n86, n87, n88, n89, n90, n91, n92, n93, n94, n95, n96, n97,
+         n98, n99, n100, n101, n102, n103, n104, n105, n106, n107, n108, n109,
+         n110, n111, n112, n113, n114, n115, n116, n117, n118, n119, n120,
+         n121, n122, n123, n124, n125, n126, n127, n128, n129, n130, n131,
+         n132, n133, n134, n135, n136, n137, n138, n139, n140, n141, n142;
+  assign N5 = rd_pnt[0];
+  assign N6 = rd_pnt[1];
+  assign N7 = wr_pnt[0];
+  assign N8 = wr_pnt[1];
 
-  \**SEQGEN**  \mem_reg[7][7]  ( .clear(1'b0), .preset(1'b0), .next_state(N33), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[7][7] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N40) );
-  \**SEQGEN**  \mem_reg[7][6]  ( .clear(1'b0), .preset(1'b0), .next_state(N32), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[7][6] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N40) );
-  \**SEQGEN**  \mem_reg[7][5]  ( .clear(1'b0), .preset(1'b0), .next_state(N31), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[7][5] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N40) );
-  \**SEQGEN**  \mem_reg[7][4]  ( .clear(1'b0), .preset(1'b0), .next_state(N30), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[7][4] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N40) );
-  \**SEQGEN**  \mem_reg[7][3]  ( .clear(1'b0), .preset(1'b0), .next_state(N29), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[7][3] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N40) );
-  \**SEQGEN**  \mem_reg[7][2]  ( .clear(1'b0), .preset(1'b0), .next_state(N28), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[7][2] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N40) );
-  \**SEQGEN**  \mem_reg[7][1]  ( .clear(1'b0), .preset(1'b0), .next_state(N27), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[7][1] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N40) );
-  \**SEQGEN**  \mem_reg[7][0]  ( .clear(1'b0), .preset(1'b0), .next_state(N26), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[7][0] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N40) );
-  \**SEQGEN**  \mem_reg[6][7]  ( .clear(1'b0), .preset(1'b0), .next_state(N33), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[6][7] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N39) );
-  \**SEQGEN**  \mem_reg[6][6]  ( .clear(1'b0), .preset(1'b0), .next_state(N32), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[6][6] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N39) );
-  \**SEQGEN**  \mem_reg[6][5]  ( .clear(1'b0), .preset(1'b0), .next_state(N31), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[6][5] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N39) );
-  \**SEQGEN**  \mem_reg[6][4]  ( .clear(1'b0), .preset(1'b0), .next_state(N30), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[6][4] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N39) );
-  \**SEQGEN**  \mem_reg[6][3]  ( .clear(1'b0), .preset(1'b0), .next_state(N29), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[6][3] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N39) );
-  \**SEQGEN**  \mem_reg[6][2]  ( .clear(1'b0), .preset(1'b0), .next_state(N28), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[6][2] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N39) );
-  \**SEQGEN**  \mem_reg[6][1]  ( .clear(1'b0), .preset(1'b0), .next_state(N27), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[6][1] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N39) );
-  \**SEQGEN**  \mem_reg[6][0]  ( .clear(1'b0), .preset(1'b0), .next_state(N26), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[6][0] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N39) );
-  \**SEQGEN**  \mem_reg[5][7]  ( .clear(1'b0), .preset(1'b0), .next_state(N33), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[5][7] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N38) );
-  \**SEQGEN**  \mem_reg[5][6]  ( .clear(1'b0), .preset(1'b0), .next_state(N32), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[5][6] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N38) );
-  \**SEQGEN**  \mem_reg[5][5]  ( .clear(1'b0), .preset(1'b0), .next_state(N31), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[5][5] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N38) );
-  \**SEQGEN**  \mem_reg[5][4]  ( .clear(1'b0), .preset(1'b0), .next_state(N30), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[5][4] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N38) );
-  \**SEQGEN**  \mem_reg[5][3]  ( .clear(1'b0), .preset(1'b0), .next_state(N29), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[5][3] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N38) );
-  \**SEQGEN**  \mem_reg[5][2]  ( .clear(1'b0), .preset(1'b0), .next_state(N28), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[5][2] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N38) );
-  \**SEQGEN**  \mem_reg[5][1]  ( .clear(1'b0), .preset(1'b0), .next_state(N27), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[5][1] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N38) );
-  \**SEQGEN**  \mem_reg[5][0]  ( .clear(1'b0), .preset(1'b0), .next_state(N26), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[5][0] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N38) );
-  \**SEQGEN**  \mem_reg[4][7]  ( .clear(1'b0), .preset(1'b0), .next_state(N33), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[4][7] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N37) );
-  \**SEQGEN**  \mem_reg[4][6]  ( .clear(1'b0), .preset(1'b0), .next_state(N32), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[4][6] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N37) );
-  \**SEQGEN**  \mem_reg[4][5]  ( .clear(1'b0), .preset(1'b0), .next_state(N31), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[4][5] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N37) );
-  \**SEQGEN**  \mem_reg[4][4]  ( .clear(1'b0), .preset(1'b0), .next_state(N30), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[4][4] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N37) );
-  \**SEQGEN**  \mem_reg[4][3]  ( .clear(1'b0), .preset(1'b0), .next_state(N29), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[4][3] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N37) );
-  \**SEQGEN**  \mem_reg[4][2]  ( .clear(1'b0), .preset(1'b0), .next_state(N28), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[4][2] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N37) );
-  \**SEQGEN**  \mem_reg[4][1]  ( .clear(1'b0), .preset(1'b0), .next_state(N27), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[4][1] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N37) );
-  \**SEQGEN**  \mem_reg[4][0]  ( .clear(1'b0), .preset(1'b0), .next_state(N26), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[4][0] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N37) );
-  \**SEQGEN**  \mem_reg[3][7]  ( .clear(1'b0), .preset(1'b0), .next_state(N33), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[3][7] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N36) );
-  \**SEQGEN**  \mem_reg[3][6]  ( .clear(1'b0), .preset(1'b0), .next_state(N32), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[3][6] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N36) );
-  \**SEQGEN**  \mem_reg[3][5]  ( .clear(1'b0), .preset(1'b0), .next_state(N31), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[3][5] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N36) );
-  \**SEQGEN**  \mem_reg[3][4]  ( .clear(1'b0), .preset(1'b0), .next_state(N30), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[3][4] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N36) );
-  \**SEQGEN**  \mem_reg[3][3]  ( .clear(1'b0), .preset(1'b0), .next_state(N29), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[3][3] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N36) );
-  \**SEQGEN**  \mem_reg[3][2]  ( .clear(1'b0), .preset(1'b0), .next_state(N28), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[3][2] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N36) );
-  \**SEQGEN**  \mem_reg[3][1]  ( .clear(1'b0), .preset(1'b0), .next_state(N27), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[3][1] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N36) );
-  \**SEQGEN**  \mem_reg[3][0]  ( .clear(1'b0), .preset(1'b0), .next_state(N26), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[3][0] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N36) );
-  \**SEQGEN**  \mem_reg[2][7]  ( .clear(1'b0), .preset(1'b0), .next_state(N33), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[2][7] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N35) );
-  \**SEQGEN**  \mem_reg[2][6]  ( .clear(1'b0), .preset(1'b0), .next_state(N32), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[2][6] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N35) );
-  \**SEQGEN**  \mem_reg[2][5]  ( .clear(1'b0), .preset(1'b0), .next_state(N31), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[2][5] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N35) );
-  \**SEQGEN**  \mem_reg[2][4]  ( .clear(1'b0), .preset(1'b0), .next_state(N30), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[2][4] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N35) );
-  \**SEQGEN**  \mem_reg[2][3]  ( .clear(1'b0), .preset(1'b0), .next_state(N29), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[2][3] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N35) );
-  \**SEQGEN**  \mem_reg[2][2]  ( .clear(1'b0), .preset(1'b0), .next_state(N28), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[2][2] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N35) );
-  \**SEQGEN**  \mem_reg[2][1]  ( .clear(1'b0), .preset(1'b0), .next_state(N27), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[2][1] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N35) );
-  \**SEQGEN**  \mem_reg[2][0]  ( .clear(1'b0), .preset(1'b0), .next_state(N26), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[2][0] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N35) );
-  \**SEQGEN**  \mem_reg[1][7]  ( .clear(1'b0), .preset(1'b0), .next_state(N33), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[1][7] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N34) );
-  \**SEQGEN**  \mem_reg[1][6]  ( .clear(1'b0), .preset(1'b0), .next_state(N32), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[1][6] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N34) );
-  \**SEQGEN**  \mem_reg[1][5]  ( .clear(1'b0), .preset(1'b0), .next_state(N31), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[1][5] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N34) );
-  \**SEQGEN**  \mem_reg[1][4]  ( .clear(1'b0), .preset(1'b0), .next_state(N30), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[1][4] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N34) );
-  \**SEQGEN**  \mem_reg[1][3]  ( .clear(1'b0), .preset(1'b0), .next_state(N29), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[1][3] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N34) );
-  \**SEQGEN**  \mem_reg[1][2]  ( .clear(1'b0), .preset(1'b0), .next_state(N28), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[1][2] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N34) );
-  \**SEQGEN**  \mem_reg[1][1]  ( .clear(1'b0), .preset(1'b0), .next_state(N27), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[1][1] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N34) );
-  \**SEQGEN**  \mem_reg[1][0]  ( .clear(1'b0), .preset(1'b0), .next_state(N26), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[1][0] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N34) );
-  \**SEQGEN**  \mem_reg[0][7]  ( .clear(1'b0), .preset(1'b0), .next_state(N33), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[0][7] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N25) );
-  \**SEQGEN**  \mem_reg[0][6]  ( .clear(1'b0), .preset(1'b0), .next_state(N32), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[0][6] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N25) );
-  \**SEQGEN**  \mem_reg[0][5]  ( .clear(1'b0), .preset(1'b0), .next_state(N31), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[0][5] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N25) );
-  \**SEQGEN**  \mem_reg[0][4]  ( .clear(1'b0), .preset(1'b0), .next_state(N30), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[0][4] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N25) );
-  \**SEQGEN**  \mem_reg[0][3]  ( .clear(1'b0), .preset(1'b0), .next_state(N29), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[0][3] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N25) );
-  \**SEQGEN**  \mem_reg[0][2]  ( .clear(1'b0), .preset(1'b0), .next_state(N28), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[0][2] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N25) );
-  \**SEQGEN**  \mem_reg[0][1]  ( .clear(1'b0), .preset(1'b0), .next_state(N27), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[0][1] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N25) );
-  \**SEQGEN**  \mem_reg[0][0]  ( .clear(1'b0), .preset(1'b0), .next_state(N26), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(\mem[0][0] ), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N25) );
-  GTECH_AND2 C143 ( .A(wr_pnt[0]), .B(wr_pnt[1]), .Z(N41) );
-  GTECH_AND2 C144 ( .A(N41), .B(wr_pnt[2]), .Z(N40) );
-  GTECH_AND2 C145 ( .A(N0), .B(wr_pnt[1]), .Z(N42) );
-  GTECH_NOT I_0 ( .A(wr_pnt[0]), .Z(N0) );
-  GTECH_AND2 C146 ( .A(N42), .B(wr_pnt[2]), .Z(N39) );
-  GTECH_AND2 C147 ( .A(wr_pnt[0]), .B(N1), .Z(N43) );
-  GTECH_NOT I_1 ( .A(wr_pnt[1]), .Z(N1) );
-  GTECH_AND2 C148 ( .A(N43), .B(wr_pnt[2]), .Z(N38) );
-  GTECH_AND2 C149 ( .A(N2), .B(N3), .Z(N44) );
-  GTECH_NOT I_2 ( .A(wr_pnt[0]), .Z(N2) );
-  GTECH_NOT I_3 ( .A(wr_pnt[1]), .Z(N3) );
-  GTECH_AND2 C150 ( .A(N44), .B(wr_pnt[2]), .Z(N37) );
-  GTECH_AND2 C152 ( .A(N41), .B(N4), .Z(N36) );
-  GTECH_NOT I_4 ( .A(wr_pnt[2]), .Z(N4) );
-  GTECH_AND2 C154 ( .A(N42), .B(N5), .Z(N35) );
-  GTECH_NOT I_5 ( .A(wr_pnt[2]), .Z(N5) );
-  GTECH_AND2 C156 ( .A(N43), .B(N6), .Z(N34) );
-  GTECH_NOT I_6 ( .A(wr_pnt[2]), .Z(N6) );
-  GTECH_AND2 C158 ( .A(N44), .B(N7), .Z(N25) );
-  GTECH_NOT I_7 ( .A(wr_pnt[2]), .Z(N7) );
-  SELECT_OP C175 ( .DATA1(data_in), .DATA2({N17, N18, N19, N20, N21, N22, N23, 
-        N24}), .CONTROL1(N8), .CONTROL2(N16), .Z({N33, N32, N31, N30, N29, N28, 
-        N27, N26}) );
-  GTECH_BUF B_0 ( .A(N15), .Z(N8) );
-  MUX_OP C176 ( .D0({\mem[0][0] , \mem[0][1] , \mem[0][2] , \mem[0][3] , 
-        \mem[0][4] , \mem[0][5] , \mem[0][6] , \mem[0][7] }), .D1({\mem[1][0] , 
-        \mem[1][1] , \mem[1][2] , \mem[1][3] , \mem[1][4] , \mem[1][5] , 
-        \mem[1][6] , \mem[1][7] }), .D2({\mem[2][0] , \mem[2][1] , \mem[2][2] , 
-        \mem[2][3] , \mem[2][4] , \mem[2][5] , \mem[2][6] , \mem[2][7] }), 
-        .D3({\mem[3][0] , \mem[3][1] , \mem[3][2] , \mem[3][3] , \mem[3][4] , 
-        \mem[3][5] , \mem[3][6] , \mem[3][7] }), .D4({\mem[4][0] , \mem[4][1] , 
-        \mem[4][2] , \mem[4][3] , \mem[4][4] , \mem[4][5] , \mem[4][6] , 
-        \mem[4][7] }), .D5({\mem[5][0] , \mem[5][1] , \mem[5][2] , \mem[5][3] , 
-        \mem[5][4] , \mem[5][5] , \mem[5][6] , \mem[5][7] }), .D6({\mem[6][0] , 
-        \mem[6][1] , \mem[6][2] , \mem[6][3] , \mem[6][4] , \mem[6][5] , 
-        \mem[6][6] , \mem[6][7] }), .D7({\mem[7][0] , \mem[7][1] , \mem[7][2] , 
-        \mem[7][3] , \mem[7][4] , \mem[7][5] , \mem[7][6] , \mem[7][7] }), 
-        .S0(N9), .S1(N10), .S2(N11), .Z({rd_mem_out[0], rd_mem_out[1], 
-        rd_mem_out[2], rd_mem_out[3], rd_mem_out[4], rd_mem_out[5], 
-        rd_mem_out[6], rd_mem_out[7]}) );
-  GTECH_BUF B_1 ( .A(rd_pnt[0]), .Z(N9) );
-  GTECH_BUF B_2 ( .A(rd_pnt[1]), .Z(N10) );
-  GTECH_BUF B_3 ( .A(rd_pnt[2]), .Z(N11) );
-  MUX_OP C177 ( .D0({\mem[0][0] , \mem[0][1] , \mem[0][2] , \mem[0][3] , 
-        \mem[0][4] , \mem[0][5] , \mem[0][6] , \mem[0][7] }), .D1({\mem[1][0] , 
-        \mem[1][1] , \mem[1][2] , \mem[1][3] , \mem[1][4] , \mem[1][5] , 
-        \mem[1][6] , \mem[1][7] }), .D2({\mem[2][0] , \mem[2][1] , \mem[2][2] , 
-        \mem[2][3] , \mem[2][4] , \mem[2][5] , \mem[2][6] , \mem[2][7] }), 
-        .D3({\mem[3][0] , \mem[3][1] , \mem[3][2] , \mem[3][3] , \mem[3][4] , 
-        \mem[3][5] , \mem[3][6] , \mem[3][7] }), .D4({\mem[4][0] , \mem[4][1] , 
-        \mem[4][2] , \mem[4][3] , \mem[4][4] , \mem[4][5] , \mem[4][6] , 
-        \mem[4][7] }), .D5({\mem[5][0] , \mem[5][1] , \mem[5][2] , \mem[5][3] , 
-        \mem[5][4] , \mem[5][5] , \mem[5][6] , \mem[5][7] }), .D6({\mem[6][0] , 
-        \mem[6][1] , \mem[6][2] , \mem[6][3] , \mem[6][4] , \mem[6][5] , 
-        \mem[6][6] , \mem[6][7] }), .D7({\mem[7][0] , \mem[7][1] , \mem[7][2] , 
-        \mem[7][3] , \mem[7][4] , \mem[7][5] , \mem[7][6] , \mem[7][7] }), 
-        .S0(N12), .S1(N13), .S2(N14), .Z({N24, N23, N22, N21, N20, N19, N18, 
-        N17}) );
-  GTECH_BUF B_4 ( .A(wr_pnt[0]), .Z(N12) );
-  GTECH_BUF B_5 ( .A(wr_pnt[1]), .Z(N13) );
-  GTECH_BUF B_6 ( .A(wr_pnt[2]), .Z(N14) );
-  GTECH_AND2 C180 ( .A(N45), .B(wr), .Z(N15) );
-  GTECH_NOT I_8 ( .A(full), .Z(N45) );
-  GTECH_NOT I_9 ( .A(N15), .Z(N16) );
+  DFFX1 \mem_reg[3][7]  ( .D(n53), .CLK(wr_clk), .Q(n17), .QN(n111) );
+  DFFX1 \mem_reg[3][6]  ( .D(n52), .CLK(wr_clk), .Q(n18), .QN(n115) );
+  DFFX1 \mem_reg[3][5]  ( .D(n51), .CLK(wr_clk), .Q(n19), .QN(n119) );
+  DFFX1 \mem_reg[3][4]  ( .D(n50), .CLK(wr_clk), .Q(n20), .QN(n123) );
+  DFFX1 \mem_reg[3][3]  ( .D(n49), .CLK(wr_clk), .Q(n21), .QN(n127) );
+  DFFX1 \mem_reg[3][2]  ( .D(n48), .CLK(wr_clk), .Q(n54), .QN(n131) );
+  DFFX1 \mem_reg[3][1]  ( .D(n47), .CLK(wr_clk), .Q(n55), .QN(n135) );
+  DFFX1 \mem_reg[3][0]  ( .D(n46), .CLK(wr_clk), .Q(n56), .QN(n139) );
+  DFFX1 \mem_reg[2][7]  ( .D(n45), .CLK(wr_clk), .Q(n1), .QN(n112) );
+  DFFX1 \mem_reg[2][6]  ( .D(n44), .CLK(wr_clk), .Q(n2), .QN(n116) );
+  DFFX1 \mem_reg[2][5]  ( .D(n43), .CLK(wr_clk), .Q(n3), .QN(n120) );
+  DFFX1 \mem_reg[2][4]  ( .D(n42), .CLK(wr_clk), .Q(n4), .QN(n124) );
+  DFFX1 \mem_reg[2][3]  ( .D(n41), .CLK(wr_clk), .Q(n5), .QN(n128) );
+  DFFX1 \mem_reg[2][2]  ( .D(n40), .CLK(wr_clk), .Q(n6), .QN(n132) );
+  DFFX1 \mem_reg[2][1]  ( .D(n39), .CLK(wr_clk), .Q(n7), .QN(n136) );
+  DFFX1 \mem_reg[2][0]  ( .D(n38), .CLK(wr_clk), .Q(n8), .QN(n140) );
+  DFFX1 \mem_reg[1][7]  ( .D(n37), .CLK(wr_clk), .Q(n57), .QN(n114) );
+  DFFX1 \mem_reg[1][6]  ( .D(n36), .CLK(wr_clk), .Q(n58), .QN(n118) );
+  DFFX1 \mem_reg[1][5]  ( .D(n35), .CLK(wr_clk), .Q(n59), .QN(n122) );
+  DFFX1 \mem_reg[1][4]  ( .D(n34), .CLK(wr_clk), .Q(n60), .QN(n126) );
+  DFFX1 \mem_reg[1][3]  ( .D(n33), .CLK(wr_clk), .Q(n61), .QN(n130) );
+  DFFX1 \mem_reg[1][2]  ( .D(n32), .CLK(wr_clk), .Q(n62), .QN(n134) );
+  DFFX1 \mem_reg[1][1]  ( .D(n31), .CLK(wr_clk), .Q(n63), .QN(n138) );
+  DFFX1 \mem_reg[1][0]  ( .D(n30), .CLK(wr_clk), .Q(n64), .QN(n142) );
+  DFFX1 \mem_reg[0][7]  ( .D(n29), .CLK(wr_clk), .Q(n9), .QN(n113) );
+  DFFX1 \mem_reg[0][6]  ( .D(n28), .CLK(wr_clk), .Q(n10), .QN(n117) );
+  DFFX1 \mem_reg[0][5]  ( .D(n27), .CLK(wr_clk), .Q(n11), .QN(n121) );
+  DFFX1 \mem_reg[0][4]  ( .D(n26), .CLK(wr_clk), .Q(n12), .QN(n125) );
+  DFFX1 \mem_reg[0][3]  ( .D(n25), .CLK(wr_clk), .Q(n13), .QN(n129) );
+  DFFX1 \mem_reg[0][2]  ( .D(n24), .CLK(wr_clk), .Q(n14), .QN(n133) );
+  DFFX1 \mem_reg[0][1]  ( .D(n23), .CLK(wr_clk), .Q(n15), .QN(n137) );
+  DFFX1 \mem_reg[0][0]  ( .D(n22), .CLK(wr_clk), .Q(n16), .QN(n141) );
+  AO221X1 U2 ( .IN1(n65), .IN2(n17), .IN3(n66), .IN4(n1), .IN5(n67), .Q(
+        rd_mem_out[7]) );
+  AO22X1 U3 ( .IN1(n68), .IN2(n57), .IN3(n69), .IN4(n9), .Q(n67) );
+  AO221X1 U4 ( .IN1(n65), .IN2(n18), .IN3(n66), .IN4(n2), .IN5(n70), .Q(
+        rd_mem_out[6]) );
+  AO22X1 U5 ( .IN1(n68), .IN2(n58), .IN3(n69), .IN4(n10), .Q(n70) );
+  AO221X1 U6 ( .IN1(n65), .IN2(n19), .IN3(n66), .IN4(n3), .IN5(n71), .Q(
+        rd_mem_out[5]) );
+  AO22X1 U7 ( .IN1(n68), .IN2(n59), .IN3(n69), .IN4(n11), .Q(n71) );
+  AO221X1 U8 ( .IN1(n65), .IN2(n20), .IN3(n66), .IN4(n4), .IN5(n72), .Q(
+        rd_mem_out[4]) );
+  AO22X1 U9 ( .IN1(n68), .IN2(n60), .IN3(n69), .IN4(n12), .Q(n72) );
+  AO221X1 U10 ( .IN1(n65), .IN2(n21), .IN3(n66), .IN4(n5), .IN5(n73), .Q(
+        rd_mem_out[3]) );
+  AO22X1 U11 ( .IN1(n68), .IN2(n61), .IN3(n69), .IN4(n13), .Q(n73) );
+  AO221X1 U12 ( .IN1(n65), .IN2(n54), .IN3(n66), .IN4(n6), .IN5(n74), .Q(
+        rd_mem_out[2]) );
+  AO22X1 U13 ( .IN1(n68), .IN2(n62), .IN3(n69), .IN4(n14), .Q(n74) );
+  AO221X1 U14 ( .IN1(n65), .IN2(n55), .IN3(n66), .IN4(n7), .IN5(n75), .Q(
+        rd_mem_out[1]) );
+  AO22X1 U15 ( .IN1(n68), .IN2(n63), .IN3(n69), .IN4(n15), .Q(n75) );
+  AO221X1 U16 ( .IN1(n65), .IN2(n56), .IN3(n66), .IN4(n8), .IN5(n76), .Q(
+        rd_mem_out[0]) );
+  AO22X1 U17 ( .IN1(n68), .IN2(n64), .IN3(n69), .IN4(n16), .Q(n76) );
+  NOR2X0 U18 ( .IN1(N5), .IN2(N6), .QN(n69) );
+  NOR2X0 U19 ( .IN1(n77), .IN2(N6), .QN(n68) );
+  NOR2X0 U20 ( .IN1(n78), .IN2(N5), .QN(n66) );
+  NOR2X0 U21 ( .IN1(n78), .IN2(n77), .QN(n65) );
+  INVX0 U22 ( .IN(N5), .QN(n77) );
+  INVX0 U23 ( .IN(N6), .QN(n78) );
+  MUX21X1 U24 ( .IN1(n79), .IN2(n17), .S(n80), .Q(n53) );
+  MUX21X1 U25 ( .IN1(n81), .IN2(n18), .S(n80), .Q(n52) );
+  MUX21X1 U26 ( .IN1(n82), .IN2(n19), .S(n80), .Q(n51) );
+  MUX21X1 U27 ( .IN1(n83), .IN2(n20), .S(n80), .Q(n50) );
+  MUX21X1 U28 ( .IN1(n84), .IN2(n21), .S(n80), .Q(n49) );
+  MUX21X1 U29 ( .IN1(n85), .IN2(n54), .S(n80), .Q(n48) );
+  MUX21X1 U30 ( .IN1(n86), .IN2(n55), .S(n80), .Q(n47) );
+  MUX21X1 U31 ( .IN1(n87), .IN2(n56), .S(n80), .Q(n46) );
+  MUX21X1 U32 ( .IN1(n79), .IN2(n1), .S(n88), .Q(n45) );
+  MUX21X1 U33 ( .IN1(n81), .IN2(n2), .S(n88), .Q(n44) );
+  MUX21X1 U34 ( .IN1(n82), .IN2(n3), .S(n88), .Q(n43) );
+  MUX21X1 U35 ( .IN1(n83), .IN2(n4), .S(n88), .Q(n42) );
+  MUX21X1 U36 ( .IN1(n84), .IN2(n5), .S(n88), .Q(n41) );
+  MUX21X1 U37 ( .IN1(n85), .IN2(n6), .S(n88), .Q(n40) );
+  MUX21X1 U38 ( .IN1(n86), .IN2(n7), .S(n88), .Q(n39) );
+  MUX21X1 U39 ( .IN1(n87), .IN2(n8), .S(n88), .Q(n38) );
+  MUX21X1 U40 ( .IN1(n79), .IN2(n57), .S(n89), .Q(n37) );
+  MUX21X1 U41 ( .IN1(n81), .IN2(n58), .S(n89), .Q(n36) );
+  MUX21X1 U42 ( .IN1(n82), .IN2(n59), .S(n89), .Q(n35) );
+  MUX21X1 U43 ( .IN1(n83), .IN2(n60), .S(n89), .Q(n34) );
+  MUX21X1 U44 ( .IN1(n84), .IN2(n61), .S(n89), .Q(n33) );
+  MUX21X1 U45 ( .IN1(n85), .IN2(n62), .S(n89), .Q(n32) );
+  MUX21X1 U46 ( .IN1(n86), .IN2(n63), .S(n89), .Q(n31) );
+  MUX21X1 U47 ( .IN1(n87), .IN2(n64), .S(n89), .Q(n30) );
+  MUX21X1 U48 ( .IN1(n79), .IN2(n9), .S(n90), .Q(n29) );
+  MUX21X1 U49 ( .IN1(n91), .IN2(data_in[7]), .S(n92), .Q(n79) );
+  OAI221X1 U50 ( .IN1(n112), .IN2(n88), .IN3(n111), .IN4(n80), .IN5(n93), .QN(
+        n91) );
+  OA22X1 U51 ( .IN1(n113), .IN2(n90), .IN3(n114), .IN4(n89), .Q(n93) );
+  MUX21X1 U52 ( .IN1(n81), .IN2(n10), .S(n90), .Q(n28) );
+  MUX21X1 U53 ( .IN1(n94), .IN2(data_in[6]), .S(n92), .Q(n81) );
+  OAI221X1 U54 ( .IN1(n116), .IN2(n88), .IN3(n115), .IN4(n80), .IN5(n95), .QN(
+        n94) );
+  OA22X1 U55 ( .IN1(n117), .IN2(n90), .IN3(n118), .IN4(n89), .Q(n95) );
+  MUX21X1 U56 ( .IN1(n82), .IN2(n11), .S(n90), .Q(n27) );
+  MUX21X1 U57 ( .IN1(n96), .IN2(data_in[5]), .S(n92), .Q(n82) );
+  OAI221X1 U58 ( .IN1(n120), .IN2(n88), .IN3(n119), .IN4(n80), .IN5(n97), .QN(
+        n96) );
+  OA22X1 U59 ( .IN1(n121), .IN2(n90), .IN3(n122), .IN4(n89), .Q(n97) );
+  MUX21X1 U60 ( .IN1(n83), .IN2(n12), .S(n90), .Q(n26) );
+  MUX21X1 U61 ( .IN1(n98), .IN2(data_in[4]), .S(n92), .Q(n83) );
+  OAI221X1 U62 ( .IN1(n124), .IN2(n88), .IN3(n123), .IN4(n80), .IN5(n99), .QN(
+        n98) );
+  OA22X1 U63 ( .IN1(n125), .IN2(n90), .IN3(n126), .IN4(n89), .Q(n99) );
+  MUX21X1 U64 ( .IN1(n84), .IN2(n13), .S(n90), .Q(n25) );
+  MUX21X1 U65 ( .IN1(n100), .IN2(data_in[3]), .S(n92), .Q(n84) );
+  OAI221X1 U66 ( .IN1(n128), .IN2(n88), .IN3(n127), .IN4(n80), .IN5(n101), 
+        .QN(n100) );
+  OA22X1 U67 ( .IN1(n129), .IN2(n90), .IN3(n130), .IN4(n89), .Q(n101) );
+  MUX21X1 U68 ( .IN1(n85), .IN2(n14), .S(n90), .Q(n24) );
+  MUX21X1 U69 ( .IN1(n102), .IN2(data_in[2]), .S(n92), .Q(n85) );
+  OAI221X1 U70 ( .IN1(n132), .IN2(n88), .IN3(n131), .IN4(n80), .IN5(n103), 
+        .QN(n102) );
+  OA22X1 U71 ( .IN1(n133), .IN2(n90), .IN3(n134), .IN4(n89), .Q(n103) );
+  MUX21X1 U72 ( .IN1(n86), .IN2(n15), .S(n90), .Q(n23) );
+  MUX21X1 U73 ( .IN1(n104), .IN2(data_in[1]), .S(n92), .Q(n86) );
+  OAI221X1 U74 ( .IN1(n136), .IN2(n88), .IN3(n135), .IN4(n80), .IN5(n105), 
+        .QN(n104) );
+  OA22X1 U75 ( .IN1(n137), .IN2(n90), .IN3(n138), .IN4(n89), .Q(n105) );
+  MUX21X1 U76 ( .IN1(n87), .IN2(n16), .S(n90), .Q(n22) );
+  MUX21X1 U77 ( .IN1(n106), .IN2(data_in[0]), .S(n92), .Q(n87) );
+  NOR2X0 U78 ( .IN1(n107), .IN2(full), .QN(n92) );
+  INVX0 U79 ( .IN(wr), .QN(n107) );
+  OAI221X1 U80 ( .IN1(n140), .IN2(n88), .IN3(n139), .IN4(n80), .IN5(n108), 
+        .QN(n106) );
+  OA22X1 U81 ( .IN1(n141), .IN2(n90), .IN3(n142), .IN4(n89), .Q(n108) );
+  NAND2X0 U82 ( .IN1(N7), .IN2(n109), .QN(n89) );
+  NAND2X0 U83 ( .IN1(n110), .IN2(n109), .QN(n90) );
+  INVX0 U84 ( .IN(N8), .QN(n109) );
+  NAND2X0 U85 ( .IN1(N8), .IN2(N7), .QN(n80) );
+  NAND2X0 U86 ( .IN1(N8), .IN2(n110), .QN(n88) );
+  INVX0 U87 ( .IN(N7), .QN(n110) );
 endmodule
 
 
 module empty_full ( wr_pnt, rd_pnt, rd_toggle, wr_toggle, empty, full );
-  input [2:0] wr_pnt;
-  input [2:0] rd_pnt;
+  input [1:0] wr_pnt;
+  input [1:0] rd_pnt;
   input rd_toggle, wr_toggle;
   output empty, full;
-  wire   N0, N1, N2, N3;
+  wire   n1, n2, n3, n4;
 
-  GTECH_XOR2 C4 ( .A(rd_toggle), .B(wr_toggle), .Z(N0) );
-  GTECH_NOT I_0 ( .A(N0), .Z(N1) );
-  EQ_UNS_OP eq_403_2 ( .A(rd_pnt), .B(wr_pnt), .Z(N2) );
-  GTECH_XOR2 C6 ( .A(rd_toggle), .B(wr_toggle), .Z(N3) );
-  GTECH_AND2 C10 ( .A(N1), .B(N2), .Z(empty) );
-  GTECH_AND2 C11 ( .A(N3), .B(N2), .Z(full) );
+  NOR3X0 U1 ( .IN1(n1), .IN2(n2), .IN3(n3), .QN(full) );
+  INVX0 U2 ( .IN(n4), .QN(n2) );
+  NOR3X0 U3 ( .IN1(n4), .IN2(n3), .IN3(n1), .QN(empty) );
+  XOR2X1 U4 ( .IN1(wr_pnt[1]), .IN2(rd_pnt[1]), .Q(n1) );
+  XOR2X1 U5 ( .IN1(wr_pnt[0]), .IN2(rd_pnt[0]), .Q(n3) );
+  XOR2X1 U6 ( .IN1(wr_toggle), .IN2(rd_toggle), .Q(n4) );
 endmodule
 
 
 module read_pointer ( rd_clk, reset_n, rd, empty, rd_pnt, rd_toggle );
-  output [2:0] rd_pnt;
+  output [1:0] rd_pnt;
   input rd_clk, reset_n, rd, empty;
   output rd_toggle;
-  wire   N0, N1, N2, N3, N4, N5, N6, N7, net200;
+  wire   n6, n7, n8, n9, n1, n2, n3, n4;
 
-  \**SEQGEN**  rd_toggle_reg ( .clear(N0), .preset(1'b0), .next_state(N6), 
-        .clocked_on(rd_clk), .data_in(1'b0), .enable(1'b0), .Q(rd_toggle), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N2) );
-  \**SEQGEN**  \rd_pnt_reg[2]  ( .clear(N0), .preset(1'b0), .next_state(N5), 
-        .clocked_on(rd_clk), .data_in(1'b0), .enable(1'b0), .Q(rd_pnt[2]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N2) );
-  \**SEQGEN**  \rd_pnt_reg[1]  ( .clear(N0), .preset(1'b0), .next_state(N4), 
-        .clocked_on(rd_clk), .data_in(1'b0), .enable(1'b0), .Q(rd_pnt[1]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N2) );
-  \**SEQGEN**  \rd_pnt_reg[0]  ( .clear(N0), .preset(1'b0), .next_state(N3), 
-        .clocked_on(rd_clk), .data_in(1'b0), .enable(1'b0), .Q(rd_pnt[0]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N2) );
-  ADD_UNS_OP add_425 ( .A({rd_toggle, rd_pnt}), .B(1'b1), .Z({N6, N5, N4, N3})
-         );
-  GTECH_NOT I_0 ( .A(reset_n), .Z(N0) );
-  GTECH_BUF B_0 ( .A(reset_n), .Z(N1) );
-  GTECH_AND2 C37 ( .A(rd), .B(N7), .Z(N2) );
-  GTECH_NOT I_1 ( .A(empty), .Z(N7) );
-  GTECH_AND2 C41 ( .A(N1), .B(N2), .Z(net200) );
+  DFFARX1 rd_toggle_reg ( .D(n7), .CLK(rd_clk), .RSTB(reset_n), .Q(rd_toggle), 
+        .QN(n6) );
+  DFFARX1 \rd_pnt_reg[0]  ( .D(n9), .CLK(rd_clk), .RSTB(reset_n), .Q(rd_pnt[0]) );
+  DFFARX1 \rd_pnt_reg[1]  ( .D(n8), .CLK(rd_clk), .RSTB(reset_n), .Q(rd_pnt[1]) );
+  XNOR2X1 U3 ( .IN1(rd_pnt[0]), .IN2(n1), .Q(n9) );
+  NAND2X0 U4 ( .IN1(rd), .IN2(n2), .QN(n1) );
+  XOR2X1 U5 ( .IN1(rd_pnt[1]), .IN2(n3), .Q(n8) );
+  XOR2X1 U6 ( .IN1(n6), .IN2(n4), .Q(n7) );
+  NAND2X0 U7 ( .IN1(n3), .IN2(rd_pnt[1]), .QN(n4) );
+  AND3X1 U8 ( .IN1(rd), .IN2(n2), .IN3(rd_pnt[0]), .Q(n3) );
+  INVX0 U9 ( .IN(empty), .QN(n2) );
 endmodule
 
 
 module write_pointer ( wr_clk, reset_n, wr, full, wr_pnt, wr_toggle );
-  output [2:0] wr_pnt;
+  output [1:0] wr_pnt;
   input wr_clk, reset_n, wr, full;
   output wr_toggle;
-  wire   N0, N1, N2, N3, N4, N5, N6, N7, net213;
+  wire   n6, n7, n8, n9, n1, n2, n3, n4;
 
-  \**SEQGEN**  wr_toggle_reg ( .clear(N0), .preset(1'b0), .next_state(N6), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(wr_toggle), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N2) );
-  \**SEQGEN**  \wr_pnt_reg[2]  ( .clear(N0), .preset(1'b0), .next_state(N5), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(wr_pnt[2]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N2) );
-  \**SEQGEN**  \wr_pnt_reg[1]  ( .clear(N0), .preset(1'b0), .next_state(N4), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(wr_pnt[1]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N2) );
-  \**SEQGEN**  \wr_pnt_reg[0]  ( .clear(N0), .preset(1'b0), .next_state(N3), 
-        .clocked_on(wr_clk), .data_in(1'b0), .enable(1'b0), .Q(wr_pnt[0]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N2) );
-  ADD_UNS_OP add_448 ( .A({wr_toggle, wr_pnt}), .B(1'b1), .Z({N6, N5, N4, N3})
-         );
-  GTECH_NOT I_0 ( .A(reset_n), .Z(N0) );
-  GTECH_BUF B_0 ( .A(reset_n), .Z(N1) );
-  GTECH_AND2 C37 ( .A(wr), .B(N7), .Z(N2) );
-  GTECH_NOT I_1 ( .A(full), .Z(N7) );
-  GTECH_AND2 C41 ( .A(N1), .B(N2), .Z(net213) );
+  DFFARX1 wr_toggle_reg ( .D(n7), .CLK(wr_clk), .RSTB(reset_n), .Q(wr_toggle), 
+        .QN(n6) );
+  DFFARX1 \wr_pnt_reg[0]  ( .D(n9), .CLK(wr_clk), .RSTB(reset_n), .Q(wr_pnt[0]) );
+  DFFARX1 \wr_pnt_reg[1]  ( .D(n8), .CLK(wr_clk), .RSTB(reset_n), .Q(wr_pnt[1]) );
+  XNOR2X1 U3 ( .IN1(wr_pnt[0]), .IN2(n1), .Q(n9) );
+  NAND2X0 U4 ( .IN1(wr), .IN2(n2), .QN(n1) );
+  XOR2X1 U5 ( .IN1(wr_pnt[1]), .IN2(n3), .Q(n8) );
+  XOR2X1 U6 ( .IN1(n6), .IN2(n4), .Q(n7) );
+  NAND2X0 U7 ( .IN1(n3), .IN2(wr_pnt[1]), .QN(n4) );
+  AND3X1 U8 ( .IN1(wr), .IN2(n2), .IN3(wr_pnt[0]), .Q(n3) );
+  INVX0 U9 ( .IN(full), .QN(n2) );
 endmodule
 
 
@@ -437,43 +226,11 @@ module fifo ( wr_clk, rd_clk, reset_n, wr, rd, data_in, data_out, empty, full
   output [7:0] data_out;
   input wr_clk, rd_clk, reset_n, wr, rd;
   output empty, full;
-  wire   N0, wr_toggle, rd_toggle;
+  wire   wr_toggle, rd_toggle;
   wire   [7:0] rd_mem_out;
-  wire   [2:0] rd_pnt;
-  wire   [2:0] wr_pnt;
+  wire   [1:0] rd_pnt;
+  wire   [1:0] wr_pnt;
 
-  \**SEQGEN**  \data_out_reg[7]  ( .clear(N0), .preset(1'b0), .next_state(
-        rd_mem_out[7]), .clocked_on(rd_clk), .data_in(1'b0), .enable(1'b0), 
-        .Q(data_out[7]), .synch_clear(1'b0), .synch_preset(1'b0), 
-        .synch_toggle(1'b0), .synch_enable(1'b1) );
-  \**SEQGEN**  \data_out_reg[6]  ( .clear(N0), .preset(1'b0), .next_state(
-        rd_mem_out[6]), .clocked_on(rd_clk), .data_in(1'b0), .enable(1'b0), 
-        .Q(data_out[6]), .synch_clear(1'b0), .synch_preset(1'b0), 
-        .synch_toggle(1'b0), .synch_enable(1'b1) );
-  \**SEQGEN**  \data_out_reg[5]  ( .clear(N0), .preset(1'b0), .next_state(
-        rd_mem_out[5]), .clocked_on(rd_clk), .data_in(1'b0), .enable(1'b0), 
-        .Q(data_out[5]), .synch_clear(1'b0), .synch_preset(1'b0), 
-        .synch_toggle(1'b0), .synch_enable(1'b1) );
-  \**SEQGEN**  \data_out_reg[4]  ( .clear(N0), .preset(1'b0), .next_state(
-        rd_mem_out[4]), .clocked_on(rd_clk), .data_in(1'b0), .enable(1'b0), 
-        .Q(data_out[4]), .synch_clear(1'b0), .synch_preset(1'b0), 
-        .synch_toggle(1'b0), .synch_enable(1'b1) );
-  \**SEQGEN**  \data_out_reg[3]  ( .clear(N0), .preset(1'b0), .next_state(
-        rd_mem_out[3]), .clocked_on(rd_clk), .data_in(1'b0), .enable(1'b0), 
-        .Q(data_out[3]), .synch_clear(1'b0), .synch_preset(1'b0), 
-        .synch_toggle(1'b0), .synch_enable(1'b1) );
-  \**SEQGEN**  \data_out_reg[2]  ( .clear(N0), .preset(1'b0), .next_state(
-        rd_mem_out[2]), .clocked_on(rd_clk), .data_in(1'b0), .enable(1'b0), 
-        .Q(data_out[2]), .synch_clear(1'b0), .synch_preset(1'b0), 
-        .synch_toggle(1'b0), .synch_enable(1'b1) );
-  \**SEQGEN**  \data_out_reg[1]  ( .clear(N0), .preset(1'b0), .next_state(
-        rd_mem_out[1]), .clocked_on(rd_clk), .data_in(1'b0), .enable(1'b0), 
-        .Q(data_out[1]), .synch_clear(1'b0), .synch_preset(1'b0), 
-        .synch_toggle(1'b0), .synch_enable(1'b1) );
-  \**SEQGEN**  \data_out_reg[0]  ( .clear(N0), .preset(1'b0), .next_state(
-        rd_mem_out[0]), .clocked_on(rd_clk), .data_in(1'b0), .enable(1'b0), 
-        .Q(data_out[0]), .synch_clear(1'b0), .synch_preset(1'b0), 
-        .synch_toggle(1'b0), .synch_enable(1'b1) );
   memory memory_0 ( .wr_clk(wr_clk), .wr_pnt(wr_pnt), .data_in(data_in), .wr(
         wr), .rd_pnt(rd_pnt), .full(full), .rd_mem_out(rd_mem_out) );
   empty_full empty_full_0 ( .wr_pnt(wr_pnt), .rd_pnt(rd_pnt), .rd_toggle(
@@ -482,7 +239,22 @@ module fifo ( wr_clk, rd_clk, reset_n, wr, rd, data_in, data_out, empty, full
         .empty(empty), .rd_pnt(rd_pnt), .rd_toggle(rd_toggle) );
   write_pointer write_pointer_0 ( .wr_clk(wr_clk), .reset_n(reset_n), .wr(wr), 
         .full(full), .wr_pnt(wr_pnt), .wr_toggle(wr_toggle) );
-  GTECH_NOT I_0 ( .A(reset_n), .Z(N0) );
+  DFFARX1 \data_out_reg[7]  ( .D(rd_mem_out[7]), .CLK(rd_clk), .RSTB(reset_n), 
+        .Q(data_out[7]) );
+  DFFARX1 \data_out_reg[6]  ( .D(rd_mem_out[6]), .CLK(rd_clk), .RSTB(reset_n), 
+        .Q(data_out[6]) );
+  DFFARX1 \data_out_reg[5]  ( .D(rd_mem_out[5]), .CLK(rd_clk), .RSTB(reset_n), 
+        .Q(data_out[5]) );
+  DFFARX1 \data_out_reg[4]  ( .D(rd_mem_out[4]), .CLK(rd_clk), .RSTB(reset_n), 
+        .Q(data_out[4]) );
+  DFFARX1 \data_out_reg[3]  ( .D(rd_mem_out[3]), .CLK(rd_clk), .RSTB(reset_n), 
+        .Q(data_out[3]) );
+  DFFARX1 \data_out_reg[2]  ( .D(rd_mem_out[2]), .CLK(rd_clk), .RSTB(reset_n), 
+        .Q(data_out[2]) );
+  DFFARX1 \data_out_reg[1]  ( .D(rd_mem_out[1]), .CLK(rd_clk), .RSTB(reset_n), 
+        .Q(data_out[1]) );
+  DFFARX1 \data_out_reg[0]  ( .D(rd_mem_out[0]), .CLK(rd_clk), .RSTB(reset_n), 
+        .Q(data_out[0]) );
 endmodule
 
 
@@ -490,47 +262,27 @@ module packet_sm ( clk_50, reset_n, shift_done, is_header_byte, is_data_byte
  );
   input clk_50, reset_n, shift_done;
   output is_header_byte, is_data_byte;
-  wire   N0, N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14, N15,
-         N16, N17, N18;
+  wire   n2, n1, n3, n4, n5, n6, n7, n8, n9;
   wire   [1:0] packet_sm_ps;
   wire   [2:0] packet_sm_ns;
 
-  \**SEQGEN**  \packet_sm_ps_reg[2]  ( .clear(N9), .preset(1'b0), .next_state(
-        packet_sm_ns[2]), .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), 
-        .Q(is_data_byte), .synch_clear(1'b0), .synch_preset(1'b0), 
-        .synch_toggle(1'b0), .synch_enable(1'b1) );
-  \**SEQGEN**  \packet_sm_ps_reg[1]  ( .clear(N9), .preset(1'b0), .next_state(
-        packet_sm_ns[1]), .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), 
-        .Q(packet_sm_ps[1]), .synch_clear(1'b0), .synch_preset(1'b0), 
-        .synch_toggle(1'b0), .synch_enable(1'b1) );
-  \**SEQGEN**  \packet_sm_ps_reg[0]  ( .clear(N9), .preset(1'b0), .next_state(
-        packet_sm_ns[0]), .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), 
-        .Q(packet_sm_ps[0]), .synch_clear(1'b0), .synch_preset(1'b0), 
-        .synch_toggle(1'b0), .synch_enable(1'b1) );
-  GTECH_OR2 C74 ( .A(packet_sm_ps[1]), .B(is_data_byte), .Z(N16) );
-  GTECH_OR2 C75 ( .A(packet_sm_ps[0]), .B(N16), .Z(N17) );
-  GTECH_NOT I_0 ( .A(N17), .Z(N18) );
-  GTECH_NOT I_1 ( .A(is_data_byte), .Z(N10) );
-  GTECH_AND3 C78 ( .A(is_data_byte), .B(N0), .C(N1), .Z(N11) );
-  GTECH_NOT I_2 ( .A(packet_sm_ps[0]), .Z(N0) );
-  GTECH_NOT I_3 ( .A(packet_sm_ps[1]), .Z(N1) );
-  GTECH_AND2 C79 ( .A(packet_sm_ps[0]), .B(N2), .Z(N12) );
-  GTECH_NOT I_4 ( .A(packet_sm_ps[1]), .Z(N2) );
-  GTECH_AND2 C80 ( .A(N3), .B(packet_sm_ps[1]), .Z(N13) );
-  GTECH_NOT I_5 ( .A(packet_sm_ps[0]), .Z(N3) );
-  GTECH_AND2 C81 ( .A(packet_sm_ps[0]), .B(packet_sm_ps[1]), .Z(N14) );
-  SELECT_OP C82 ( .DATA1({shift_done, 1'b0, 1'b0}), .DATA2({1'b1, 1'b0, 
-        shift_done}), .DATA3({1'b1, shift_done, N15}), .DATA4({1'b1, 1'b1, 
-        shift_done}), .DATA5({N15, N15, N15}), .CONTROL1(N4), .CONTROL2(N5), 
-        .CONTROL3(N6), .CONTROL4(N7), .CONTROL5(N8), .Z(packet_sm_ns) );
-  GTECH_BUF B_0 ( .A(N10), .Z(N4) );
-  GTECH_BUF B_1 ( .A(N11), .Z(N5) );
-  GTECH_BUF B_2 ( .A(N12), .Z(N6) );
-  GTECH_BUF B_3 ( .A(N13), .Z(N7) );
-  GTECH_BUF B_4 ( .A(N14), .Z(N8) );
-  GTECH_NOT I_6 ( .A(reset_n), .Z(N9) );
-  GTECH_NOT I_7 ( .A(shift_done), .Z(N15) );
-  GTECH_BUF B_5 ( .A(N18), .Z(is_header_byte) );
+  DFFARX1 \packet_sm_ps_reg[2]  ( .D(packet_sm_ns[2]), .CLK(clk_50), .RSTB(
+        reset_n), .Q(is_data_byte), .QN(n2) );
+  DFFARX1 \packet_sm_ps_reg[1]  ( .D(packet_sm_ns[1]), .CLK(clk_50), .RSTB(
+        reset_n), .Q(packet_sm_ps[1]), .QN(n1) );
+  DFFARX1 \packet_sm_ps_reg[0]  ( .D(packet_sm_ns[0]), .CLK(clk_50), .RSTB(
+        reset_n), .Q(packet_sm_ps[0]) );
+  NAND2X0 U3 ( .IN1(n3), .IN2(n4), .QN(packet_sm_ns[2]) );
+  MUX21X1 U4 ( .IN1(packet_sm_ps[0]), .IN2(n5), .S(n2), .Q(n4) );
+  INVX0 U5 ( .IN(n6), .QN(n3) );
+  MUX21X1 U6 ( .IN1(n5), .IN2(packet_sm_ps[0]), .S(n1), .Q(n6) );
+  XNOR2X1 U7 ( .IN1(packet_sm_ps[1]), .IN2(n7), .Q(packet_sm_ns[1]) );
+  NAND2X0 U8 ( .IN1(packet_sm_ps[0]), .IN2(shift_done), .QN(n7) );
+  MUX21X1 U9 ( .IN1(n8), .IN2(n5), .S(packet_sm_ps[0]), .Q(packet_sm_ns[0]) );
+  INVX0 U10 ( .IN(shift_done), .QN(n5) );
+  AND2X1 U11 ( .IN1(n9), .IN2(shift_done), .Q(n8) );
+  NOR2X0 U12 ( .IN1(packet_sm_ps[0]), .IN2(n9), .QN(is_header_byte) );
+  NAND2X0 U13 ( .IN1(n2), .IN2(n1), .QN(n9) );
 endmodule
 
 
@@ -539,64 +291,53 @@ module serialdata_to_parallel ( clk_50, data_ena, reset_n, serial_data, data,
   output [7:0] data;
   input clk_50, data_ena, reset_n, serial_data;
   output shift_done;
-  wire   N0, N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, net102;
+  wire   N9, N10, N11, N12, n25, n26, n27, n28, n29, n30, n31, n32, n1, n2, n3,
+         n4, n5, n6, n7;
   wire   [2:0] shift_cnt;
 
-  \**SEQGEN**  \data_reg[7]  ( .clear(N2), .preset(1'b0), .next_state(
-        serial_data), .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), .Q(
-        data[7]), .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(data_ena) );
-  \**SEQGEN**  \data_reg[6]  ( .clear(N2), .preset(1'b0), .next_state(data[7]), 
-        .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), .Q(data[6]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(data_ena) );
-  \**SEQGEN**  \data_reg[5]  ( .clear(N2), .preset(1'b0), .next_state(data[6]), 
-        .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), .Q(data[5]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(data_ena) );
-  \**SEQGEN**  \data_reg[4]  ( .clear(N2), .preset(1'b0), .next_state(data[5]), 
-        .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), .Q(data[4]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(data_ena) );
-  \**SEQGEN**  \data_reg[3]  ( .clear(N2), .preset(1'b0), .next_state(data[4]), 
-        .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), .Q(data[3]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(data_ena) );
-  \**SEQGEN**  \data_reg[2]  ( .clear(N2), .preset(1'b0), .next_state(data[3]), 
-        .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), .Q(data[2]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(data_ena) );
-  \**SEQGEN**  \data_reg[1]  ( .clear(N2), .preset(1'b0), .next_state(data[2]), 
-        .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), .Q(data[1]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(data_ena) );
-  \**SEQGEN**  \data_reg[0]  ( .clear(N2), .preset(1'b0), .next_state(data[1]), 
-        .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), .Q(data[0]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(data_ena) );
-  \**SEQGEN**  \shift_cnt_reg[3]  ( .clear(N2), .preset(1'b0), .next_state(N12), .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), .Q(shift_done), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(1'b1) );
-  \**SEQGEN**  \shift_cnt_reg[2]  ( .clear(N2), .preset(1'b0), .next_state(N11), .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), .Q(shift_cnt[2]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(1'b1) );
-  \**SEQGEN**  \shift_cnt_reg[1]  ( .clear(N2), .preset(1'b0), .next_state(N10), .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), .Q(shift_cnt[1]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(1'b1) );
-  \**SEQGEN**  \shift_cnt_reg[0]  ( .clear(N2), .preset(1'b0), .next_state(N9), 
-        .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), .Q(shift_cnt[0]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(1'b1) );
-  ADD_UNS_OP add_186 ( .A({shift_done, shift_cnt}), .B(1'b1), .Z({N8, N7, N6, 
-        N5}) );
-  SELECT_OP C69 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0}), .DATA2({N8, N7, N6, N5}), 
-        .CONTROL1(N0), .CONTROL2(N1), .Z({N12, N11, N10, N9}) );
-  GTECH_BUF B_0 ( .A(N3), .Z(N0) );
-  GTECH_BUF B_1 ( .A(data_ena), .Z(N1) );
-  GTECH_NOT I_0 ( .A(reset_n), .Z(N2) );
-  GTECH_NOT I_1 ( .A(data_ena), .Z(N3) );
-  GTECH_BUF B_2 ( .A(reset_n), .Z(N4) );
-  GTECH_AND2 C78 ( .A(N4), .B(data_ena), .Z(net102) );
+  DFFARX1 \data_reg[7]  ( .D(n32), .CLK(clk_50), .RSTB(reset_n), .Q(data[7])
+         );
+  DFFARX1 \shift_cnt_reg[1]  ( .D(N10), .CLK(clk_50), .RSTB(reset_n), .Q(
+        shift_cnt[1]) );
+  DFFARX1 \data_reg[6]  ( .D(n31), .CLK(clk_50), .RSTB(reset_n), .Q(data[6])
+         );
+  DFFARX1 \data_reg[1]  ( .D(n26), .CLK(clk_50), .RSTB(reset_n), .Q(data[1])
+         );
+  DFFARX1 \data_reg[4]  ( .D(n29), .CLK(clk_50), .RSTB(reset_n), .Q(data[4])
+         );
+  DFFARX1 \shift_cnt_reg[2]  ( .D(N11), .CLK(clk_50), .RSTB(reset_n), .Q(
+        shift_cnt[2]) );
+  DFFARX1 \data_reg[3]  ( .D(n28), .CLK(clk_50), .RSTB(reset_n), .Q(data[3])
+         );
+  DFFARX1 \data_reg[5]  ( .D(n30), .CLK(clk_50), .RSTB(reset_n), .Q(data[5])
+         );
+  DFFARX1 \data_reg[0]  ( .D(n25), .CLK(clk_50), .RSTB(reset_n), .Q(data[0])
+         );
+  DFFARX1 \shift_cnt_reg[0]  ( .D(N9), .CLK(clk_50), .RSTB(reset_n), .Q(
+        shift_cnt[0]) );
+  DFFARX1 \data_reg[2]  ( .D(n27), .CLK(clk_50), .RSTB(reset_n), .Q(data[2])
+         );
+  DFFARX1 \shift_cnt_reg[3]  ( .D(N12), .CLK(clk_50), .RSTB(reset_n), .Q(
+        shift_done) );
+  MUX21X1 U3 ( .IN1(serial_data), .IN2(data[7]), .S(n1), .Q(n32) );
+  MUX21X1 U4 ( .IN1(data[7]), .IN2(data[6]), .S(n1), .Q(n31) );
+  MUX21X1 U5 ( .IN1(data[6]), .IN2(data[5]), .S(n1), .Q(n30) );
+  MUX21X1 U6 ( .IN1(data[5]), .IN2(data[4]), .S(n1), .Q(n29) );
+  MUX21X1 U7 ( .IN1(data[4]), .IN2(data[3]), .S(n1), .Q(n28) );
+  MUX21X1 U8 ( .IN1(data[3]), .IN2(data[2]), .S(n1), .Q(n27) );
+  MUX21X1 U9 ( .IN1(data[2]), .IN2(data[1]), .S(n1), .Q(n26) );
+  MUX21X1 U10 ( .IN1(data[1]), .IN2(data[0]), .S(n1), .Q(n25) );
+  NOR2X0 U11 ( .IN1(shift_cnt[0]), .IN2(n1), .QN(N9) );
+  NOR2X0 U12 ( .IN1(n2), .IN2(n1), .QN(N12) );
+  XOR2X1 U13 ( .IN1(n3), .IN2(shift_done), .Q(n2) );
+  NAND2X0 U14 ( .IN1(shift_cnt[2]), .IN2(n4), .QN(n3) );
+  NOR2X0 U15 ( .IN1(n5), .IN2(n1), .QN(N11) );
+  INVX0 U16 ( .IN(data_ena), .QN(n1) );
+  XNOR2X1 U17 ( .IN1(n4), .IN2(shift_cnt[2]), .Q(n5) );
+  INVX0 U18 ( .IN(n6), .QN(n4) );
+  AND3X1 U19 ( .IN1(n7), .IN2(n6), .IN3(data_ena), .Q(N10) );
+  NAND2X0 U20 ( .IN1(shift_cnt[1]), .IN2(shift_cnt[0]), .QN(n6) );
+  OR2X1 U21 ( .IN1(shift_cnt[1]), .IN2(shift_cnt[0]), .Q(n7) );
 endmodule
 
 
@@ -605,37 +346,19 @@ module packet_type ( clk_50, reset_n, data, is_header_byte,
   input [7:0] data;
   input clk_50, reset_n, is_header_byte;
   output is_temperature_packet;
-  wire   N0, N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14, N15,
-         N16, N17, N18, N19, N20, N21, N22, N23;
+  wire   n9, n1, n2, n3, n4, n5, n6, n7;
 
-  \**SEQGEN**  is_temperature_packet_reg ( .clear(N0), .preset(1'b0), 
-        .next_state(N1), .clocked_on(clk_50), .data_in(1'b0), .enable(1'b0), 
-        .Q(is_temperature_packet), .synch_clear(1'b0), .synch_preset(1'b0), 
-        .synch_toggle(1'b0), .synch_enable(is_header_byte) );
-  GTECH_NOT I_0 ( .A(data[7]), .Z(N2) );
-  GTECH_NOT I_1 ( .A(data[5]), .Z(N3) );
-  GTECH_NOT I_2 ( .A(data[2]), .Z(N4) );
-  GTECH_NOT I_3 ( .A(data[0]), .Z(N5) );
-  GTECH_OR2 C24 ( .A(data[6]), .B(N2), .Z(N6) );
-  GTECH_OR2 C25 ( .A(N3), .B(N6), .Z(N7) );
-  GTECH_OR2 C26 ( .A(data[4]), .B(N7), .Z(N8) );
-  GTECH_OR2 C27 ( .A(data[3]), .B(N8), .Z(N9) );
-  GTECH_OR2 C28 ( .A(N4), .B(N9), .Z(N10) );
-  GTECH_OR2 C29 ( .A(data[1]), .B(N10), .Z(N11) );
-  GTECH_OR2 C30 ( .A(N5), .B(N11), .Z(N12) );
-  GTECH_NOT I_4 ( .A(N12), .Z(N13) );
-  GTECH_NOT I_5 ( .A(data[6]), .Z(N14) );
-  GTECH_NOT I_6 ( .A(data[1]), .Z(N15) );
-  GTECH_OR2 C36 ( .A(N14), .B(N2), .Z(N16) );
-  GTECH_OR2 C37 ( .A(data[5]), .B(N16), .Z(N17) );
-  GTECH_OR2 C38 ( .A(data[4]), .B(N17), .Z(N18) );
-  GTECH_OR2 C39 ( .A(data[3]), .B(N18), .Z(N19) );
-  GTECH_OR2 C40 ( .A(data[2]), .B(N19), .Z(N20) );
-  GTECH_OR2 C41 ( .A(N15), .B(N20), .Z(N21) );
-  GTECH_OR2 C42 ( .A(N5), .B(N21), .Z(N22) );
-  GTECH_NOT I_7 ( .A(N22), .Z(N23) );
-  GTECH_NOT I_8 ( .A(reset_n), .Z(N0) );
-  GTECH_OR2 C49 ( .A(N13), .B(N23), .Z(N1) );
+  DFFARX1 is_temperature_packet_reg ( .D(n9), .CLK(clk_50), .RSTB(reset_n), 
+        .Q(is_temperature_packet) );
+  MUX21X1 U2 ( .IN1(is_temperature_packet), .IN2(n1), .S(is_header_byte), .Q(
+        n9) );
+  NOR4X0 U3 ( .IN1(n2), .IN2(n3), .IN3(data[4]), .IN4(data[3]), .QN(n1) );
+  MUX21X1 U4 ( .IN1(n4), .IN2(n5), .S(data[5]), .Q(n3) );
+  NAND3X0 U5 ( .IN1(n6), .IN2(n7), .IN3(data[2]), .QN(n5) );
+  OR3X1 U6 ( .IN1(n6), .IN2(data[2]), .IN3(n7), .Q(n4) );
+  INVX0 U7 ( .IN(data[6]), .QN(n7) );
+  INVX0 U8 ( .IN(data[1]), .QN(n6) );
+  NAND2X0 U9 ( .IN1(data[7]), .IN2(data[0]), .QN(n2) );
 endmodule
 
 
@@ -643,96 +366,79 @@ module averager_controller ( clk_2, reset_n, fifo_empty, fifo_rd, averager_add,
         averager_avg, ram_wr_n, averager_clr );
   input clk_2, reset_n, fifo_empty;
   output fifo_rd, averager_add, averager_avg, ram_wr_n, averager_clr;
-  wire   N0, N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14, N15,
-         N16, N17, N18, N19, N20, N21, N22, N23, N24, N25, N26, N27, N28, N29,
-         N30, N31, N32, N33, N34, N35, N36, N37, N38, N39, N40, N41, N42, N43,
-         N44, N45, N46, N47, N48, N49, net115;
-  wire   [2:0] averager_sm_ps;
+  wire   n1, n3, n6, n7, n23, n24, n25, n2, n4, n5, n8, n9, n10, n11, n12, n13,
+         n14, n15, n16, n17, n18, n19, n20, n21, n22, n26, n27, n28, n29, n30;
   wire   [2:0] averager_sm_ns;
-  wire   [2:0] add_cnt;
 
-  \**SEQGEN**  \averager_sm_ps_reg[2]  ( .clear(N3), .preset(1'b0), 
-        .next_state(averager_sm_ns[2]), .clocked_on(clk_2), .data_in(1'b0), 
-        .enable(1'b0), .Q(averager_sm_ps[2]), .synch_clear(1'b0), 
-        .synch_preset(1'b0), .synch_toggle(1'b0), .synch_enable(1'b1) );
-  \**SEQGEN**  \averager_sm_ps_reg[1]  ( .clear(N3), .preset(1'b0), 
-        .next_state(averager_sm_ns[1]), .clocked_on(clk_2), .data_in(1'b0), 
-        .enable(1'b0), .Q(averager_sm_ps[1]), .synch_clear(1'b0), 
-        .synch_preset(1'b0), .synch_toggle(1'b0), .synch_enable(1'b1) );
-  \**SEQGEN**  \averager_sm_ps_reg[0]  ( .clear(N3), .preset(1'b0), 
-        .next_state(averager_sm_ns[0]), .clocked_on(clk_2), .data_in(1'b0), 
-        .enable(1'b0), .Q(averager_sm_ps[0]), .synch_clear(1'b0), 
-        .synch_preset(1'b0), .synch_toggle(1'b0), .synch_enable(1'b1) );
-  \**SEQGEN**  \add_cnt_reg[2]  ( .clear(N3), .preset(1'b0), .next_state(N29), 
-        .clocked_on(clk_2), .data_in(1'b0), .enable(1'b0), .Q(add_cnt[2]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N30) );
-  \**SEQGEN**  \add_cnt_reg[1]  ( .clear(N3), .preset(1'b0), .next_state(N28), 
-        .clocked_on(clk_2), .data_in(1'b0), .enable(1'b0), .Q(add_cnt[1]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N30) );
-  \**SEQGEN**  \add_cnt_reg[0]  ( .clear(N3), .preset(1'b0), .next_state(N27), 
-        .clocked_on(clk_2), .data_in(1'b0), .enable(1'b0), .Q(add_cnt[0]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N30) );
-  GTECH_AND2 C96 ( .A(averager_sm_ps[1]), .B(averager_sm_ps[2]), .Z(N31) );
-  GTECH_AND2 C97 ( .A(averager_sm_ps[0]), .B(N31), .Z(N32) );
-  GTECH_OR2 C98 ( .A(averager_sm_ps[1]), .B(averager_sm_ps[2]), .Z(N33) );
-  GTECH_OR2 C99 ( .A(averager_sm_ps[0]), .B(N33), .Z(N34) );
-  GTECH_NOT I_0 ( .A(N34), .Z(N35) );
-  GTECH_NOT I_1 ( .A(averager_sm_ps[1]), .Z(N36) );
-  GTECH_OR2 C102 ( .A(N36), .B(averager_sm_ps[2]), .Z(N37) );
-  GTECH_OR2 C103 ( .A(averager_sm_ps[0]), .B(N37), .Z(N38) );
-  GTECH_NOT I_2 ( .A(N38), .Z(N39) );
-  GTECH_NOT I_3 ( .A(add_cnt[2]), .Z(N40) );
-  GTECH_OR2 C106 ( .A(add_cnt[1]), .B(N40), .Z(N41) );
-  GTECH_OR2 C107 ( .A(add_cnt[0]), .B(N41), .Z(N42) );
-  GTECH_NOT I_4 ( .A(N42), .Z(N43) );
-  ADD_UNS_OP add_256 ( .A(add_cnt), .B(1'b1), .Z({N26, N25, N24}) );
-  SELECT_OP C112 ( .DATA1({1'b1, 1'b0, 1'b0}), .DATA2({1'b0, 1'b0, 1'b1}), 
-        .DATA3({1'b0, 1'b1, 1'b1}), .CONTROL1(N0), .CONTROL2(N21), .CONTROL3(
-        N17), .Z({N20, N19, N18}) );
-  GTECH_BUF B_0 ( .A(N43), .Z(N0) );
-  SELECT_OP C113 ( .DATA1({1'b0, 1'b0, N4}), .DATA2({1'b0, 1'b1, 1'b0}), 
-        .DATA3({1'b0, 1'b1, 1'b1}), .DATA4({N20, N19, N18}), .DATA5({1'b1, 
-        1'b1, 1'b1}), .DATA6({1'b0, 1'b0, 1'b0}), .CONTROL1(N10), .CONTROL2(
-        N11), .CONTROL3(N12), .CONTROL4(N13), .CONTROL5(N14), .CONTROL6(N15), 
-        .Z(averager_sm_ns) );
-  SELECT_OP C114 ( .DATA1({1'b0, 1'b0, 1'b0}), .DATA2({N26, N25, N24}), 
-        .CONTROL1(N1), .CONTROL2(N2), .Z({N29, N28, N27}) );
-  GTECH_BUF B_1 ( .A(N35), .Z(N1) );
-  GTECH_BUF B_2 ( .A(N39), .Z(N2) );
-  GTECH_NOT I_5 ( .A(N32), .Z(ram_wr_n) );
-  GTECH_NOT I_6 ( .A(reset_n), .Z(N3) );
-  GTECH_NOT I_7 ( .A(fifo_empty), .Z(N4) );
-  GTECH_NOT I_8 ( .A(averager_sm_ps[2]), .Z(N5) );
-  GTECH_NOT I_9 ( .A(averager_sm_ps[1]), .Z(N6) );
-  GTECH_AND2 C122 ( .A(N5), .B(N6), .Z(N7) );
-  GTECH_NOT I_10 ( .A(averager_sm_ps[0]), .Z(N8) );
-  GTECH_AND2 C124 ( .A(N5), .B(averager_sm_ps[1]), .Z(N9) );
-  GTECH_AND2 C125 ( .A(N7), .B(N8), .Z(N10) );
-  GTECH_AND2 C126 ( .A(N7), .B(averager_sm_ps[0]), .Z(N11) );
-  GTECH_AND2 C127 ( .A(N9), .B(N8), .Z(N12) );
-  GTECH_AND2 C128 ( .A(N9), .B(averager_sm_ps[0]), .Z(N13) );
-  GTECH_AND2 C129 ( .A(averager_sm_ps[2]), .B(N6), .Z(N14) );
-  GTECH_AND2 C130 ( .A(averager_sm_ps[2]), .B(averager_sm_ps[1]), .Z(N15) );
-  GTECH_OR2 C139 ( .A(N4), .B(N43), .Z(N16) );
-  GTECH_NOT I_11 ( .A(N16), .Z(N17) );
-  GTECH_AND2 C142 ( .A(N4), .B(N42), .Z(N21) );
-  GTECH_BUF B_3 ( .A(reset_n), .Z(N22) );
-  GTECH_OR2 C145 ( .A(averager_sm_ps[2]), .B(averager_sm_ps[0]), .Z(N23) );
-  GTECH_AND2 C149 ( .A(N22), .B(N39), .Z(net115) );
-  GTECH_AND2 C150 ( .A(N45), .B(averager_sm_ps[0]), .Z(fifo_rd) );
-  GTECH_AND2 C151 ( .A(N44), .B(N36), .Z(N45) );
-  GTECH_NOT I_12 ( .A(averager_sm_ps[2]), .Z(N44) );
-  GTECH_AND2 C154 ( .A(N46), .B(N47), .Z(averager_add) );
-  GTECH_AND2 C155 ( .A(N44), .B(averager_sm_ps[1]), .Z(N46) );
-  GTECH_NOT I_13 ( .A(averager_sm_ps[0]), .Z(N47) );
-  GTECH_AND2 C158 ( .A(N48), .B(N47), .Z(averager_avg) );
-  GTECH_AND2 C159 ( .A(averager_sm_ps[2]), .B(N36), .Z(N48) );
-  GTECH_AND2 C163 ( .A(N49), .B(N47), .Z(averager_clr) );
-  GTECH_AND2 C164 ( .A(N44), .B(N36), .Z(N49) );
-  GTECH_NOT I_14 ( .A(N23), .Z(N30) );
+  DFFARX1 \add_cnt_reg[0]  ( .D(n25), .CLK(clk_2), .RSTB(reset_n), .QN(n7) );
+  DFFARX1 \averager_sm_ps_reg[0]  ( .D(averager_sm_ns[0]), .CLK(clk_2), .RSTB(
+        reset_n), .Q(n4), .QN(n30) );
+  DFFARX1 \add_cnt_reg[1]  ( .D(n23), .CLK(clk_2), .RSTB(reset_n), .QN(n6) );
+  DFFARX1 \add_cnt_reg[2]  ( .D(n24), .CLK(clk_2), .RSTB(reset_n), .Q(n5) );
+  DFFARX1 \averager_sm_ps_reg[1]  ( .D(averager_sm_ns[1]), .CLK(clk_2), .RSTB(
+        reset_n), .Q(n2), .QN(n3) );
+  DFFARX1 \averager_sm_ps_reg[2]  ( .D(averager_sm_ns[2]), .CLK(clk_2), .RSTB(
+        reset_n), .Q(n8), .QN(n1) );
+  NAND2X0 U3 ( .IN1(n9), .IN2(n10), .QN(ram_wr_n) );
+  MUX21X1 U4 ( .IN1(n11), .IN2(averager_add), .S(n7), .Q(n25) );
+  MUX21X1 U5 ( .IN1(n12), .IN2(n13), .S(n5), .Q(n24) );
+  AO21X1 U6 ( .IN1(n6), .IN2(averager_add), .IN3(n14), .Q(n13) );
+  NOR3X0 U7 ( .IN1(n15), .IN2(n7), .IN3(n6), .QN(n12) );
+  MUX21X1 U8 ( .IN1(n14), .IN2(n16), .S(n6), .Q(n23) );
+  NOR2X0 U9 ( .IN1(n7), .IN2(n15), .QN(n16) );
+  AO21X1 U10 ( .IN1(n7), .IN2(averager_add), .IN3(n11), .Q(n14) );
+  NOR2X0 U11 ( .IN1(n2), .IN2(n17), .QN(fifo_rd) );
+  NAND2X0 U12 ( .IN1(n18), .IN2(n19), .QN(averager_sm_ns[2]) );
+  OR3X1 U13 ( .IN1(n17), .IN2(n3), .IN3(n20), .Q(n19) );
+  AO221X1 U14 ( .IN1(n21), .IN2(fifo_empty), .IN3(n3), .IN4(n11), .IN5(
+        averager_add), .Q(averager_sm_ns[1]) );
+  NOR2X0 U15 ( .IN1(n22), .IN2(n17), .QN(n21) );
+  NAND2X0 U16 ( .IN1(n1), .IN2(n4), .QN(n17) );
+  INVX0 U17 ( .IN(n20), .QN(n22) );
+  NAND3X0 U18 ( .IN1(n18), .IN2(n15), .IN3(n26), .QN(averager_sm_ns[0]) );
+  MUX21X1 U19 ( .IN1(n27), .IN2(n28), .S(n2), .Q(n26) );
+  NAND2X0 U20 ( .IN1(n1), .IN2(n20), .QN(n28) );
+  NAND3X0 U21 ( .IN1(n7), .IN2(n5), .IN3(n6), .QN(n20) );
+  OR2X1 U22 ( .IN1(n4), .IN2(fifo_empty), .Q(n27) );
+  INVX0 U23 ( .IN(averager_add), .QN(n15) );
+  NOR2X0 U24 ( .IN1(n9), .IN2(n10), .QN(averager_clr) );
+  AO22X1 U25 ( .IN1(n2), .IN2(n4), .IN3(n29), .IN4(n8), .Q(n10) );
+  XNOR2X1 U26 ( .IN1(n29), .IN2(n1), .Q(n9) );
+  XNOR2X1 U27 ( .IN1(n30), .IN2(n2), .Q(n29) );
+  NOR2X0 U28 ( .IN1(n4), .IN2(n18), .QN(averager_avg) );
+  NAND2X0 U29 ( .IN1(n3), .IN2(n8), .QN(n18) );
+  NOR2X0 U30 ( .IN1(n11), .IN2(n3), .QN(averager_add) );
+  NAND2X0 U31 ( .IN1(n1), .IN2(n30), .QN(n11) );
+endmodule
+
+
+module averager_DW01_add_0 ( A, B, CI, SUM, CO );
+  input [9:0] A;
+  input [9:0] B;
+  output [9:0] SUM;
+  input CI;
+  output CO;
+  wire   n1, n2;
+  wire   [9:1] carry;
+
+  FADDX1 U1_6 ( .A(A[6]), .B(B[6]), .CI(carry[6]), .CO(carry[7]), .S(SUM[6])
+         );
+  FADDX1 U1_5 ( .A(A[5]), .B(B[5]), .CI(carry[5]), .CO(carry[6]), .S(SUM[5])
+         );
+  FADDX1 U1_4 ( .A(A[4]), .B(B[4]), .CI(carry[4]), .CO(carry[5]), .S(SUM[4])
+         );
+  FADDX1 U1_3 ( .A(A[3]), .B(B[3]), .CI(carry[3]), .CO(carry[4]), .S(SUM[3])
+         );
+  FADDX1 U1_2 ( .A(A[2]), .B(B[2]), .CI(carry[2]), .CO(carry[3]), .S(SUM[2])
+         );
+  FADDX1 U1_7 ( .A(A[7]), .B(B[7]), .CI(carry[7]), .CO(carry[8]), .S(SUM[7])
+         );
+  FADDX1 U1_1 ( .A(A[1]), .B(B[1]), .CI(n1), .CO(carry[2]), .S(SUM[1]) );
+  XNOR2X1 U1 ( .IN1(B[9]), .IN2(n2), .Q(SUM[9]) );
+  NAND2X0 U2 ( .IN1(B[8]), .IN2(carry[8]), .QN(n2) );
+  XOR2X1 U3 ( .IN1(B[0]), .IN2(A[0]), .Q(SUM[0]) );
+  XOR2X1 U4 ( .IN1(B[8]), .IN2(carry[8]), .Q(SUM[8]) );
+  AND2X1 U5 ( .IN1(B[0]), .IN2(A[0]), .Q(n1) );
 endmodule
 
 
@@ -741,144 +447,109 @@ module averager ( clk_2, reset_n, averager_clr, averager_add, averager_avg,
   input [7:0] fifo_data;
   output [7:0] ram_data;
   input clk_2, reset_n, averager_clr, averager_add, averager_avg;
-  wire   N0, N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14, N15,
-         N16, N17, N18, N19, N20, N21, N22, N23, N24, N25, N26, N27, N28, N29,
-         N30, net126;
+  wire   N6, N7, N8, N9, N10, N11, N12, N13, N14, N15, n7, n8, n9, n10, n11,
+         n12, n13, n14, n15, n16, n2, n3, n4, n5;
   wire   [9:8] temp_reg;
 
-  \**SEQGEN**  \temp_reg_reg[9]  ( .clear(N1), .preset(1'b0), .next_state(N25), 
-        .clocked_on(clk_2), .data_in(1'b0), .enable(1'b0), .Q(temp_reg[9]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N4) );
-  \**SEQGEN**  \temp_reg_reg[8]  ( .clear(N1), .preset(1'b0), .next_state(N24), 
-        .clocked_on(clk_2), .data_in(1'b0), .enable(1'b0), .Q(temp_reg[8]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N4) );
-  \**SEQGEN**  \temp_reg_reg[7]  ( .clear(N1), .preset(1'b0), .next_state(N23), 
-        .clocked_on(clk_2), .data_in(1'b0), .enable(1'b0), .Q(ram_data[7]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N4) );
-  \**SEQGEN**  \temp_reg_reg[6]  ( .clear(N1), .preset(1'b0), .next_state(N22), 
-        .clocked_on(clk_2), .data_in(1'b0), .enable(1'b0), .Q(ram_data[6]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N4) );
-  \**SEQGEN**  \temp_reg_reg[5]  ( .clear(N1), .preset(1'b0), .next_state(N21), 
-        .clocked_on(clk_2), .data_in(1'b0), .enable(1'b0), .Q(ram_data[5]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N4) );
-  \**SEQGEN**  \temp_reg_reg[4]  ( .clear(N1), .preset(1'b0), .next_state(N20), 
-        .clocked_on(clk_2), .data_in(1'b0), .enable(1'b0), .Q(ram_data[4]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N4) );
-  \**SEQGEN**  \temp_reg_reg[3]  ( .clear(N1), .preset(1'b0), .next_state(N19), 
-        .clocked_on(clk_2), .data_in(1'b0), .enable(1'b0), .Q(ram_data[3]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N4) );
-  \**SEQGEN**  \temp_reg_reg[2]  ( .clear(N1), .preset(1'b0), .next_state(N18), 
-        .clocked_on(clk_2), .data_in(1'b0), .enable(1'b0), .Q(ram_data[2]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N4) );
-  \**SEQGEN**  \temp_reg_reg[1]  ( .clear(N1), .preset(1'b0), .next_state(N17), 
-        .clocked_on(clk_2), .data_in(1'b0), .enable(1'b0), .Q(ram_data[1]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N4) );
-  \**SEQGEN**  \temp_reg_reg[0]  ( .clear(N1), .preset(1'b0), .next_state(N16), 
-        .clocked_on(clk_2), .data_in(1'b0), .enable(1'b0), .Q(ram_data[0]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(N4) );
-  ADD_UNS_OP add_295 ( .A(fifo_data), .B({temp_reg, ram_data}), .Z({N15, N14, 
-        N13, N12, N11, N10, N9, N8, N7, N6}) );
-  SELECT_OP C79 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
-        1'b0}), .DATA2({N15, N14, N13, N12, N11, N10, N9, N8, N7, N6}), 
-        .DATA3({1'b0, 1'b0, temp_reg, ram_data[7:2]}), .CONTROL1(N0), 
-        .CONTROL2(N27), .CONTROL3(N30), .Z({N25, N24, N23, N22, N21, N20, N19, 
-        N18, N17, N16}) );
-  GTECH_BUF B_0 ( .A(averager_clr), .Z(N0) );
-  GTECH_NOT I_0 ( .A(reset_n), .Z(N1) );
-  GTECH_BUF B_1 ( .A(reset_n), .Z(N2) );
-  GTECH_OR2 C88 ( .A(averager_add), .B(averager_clr), .Z(N3) );
-  GTECH_OR2 C89 ( .A(averager_avg), .B(N3), .Z(N4) );
-  GTECH_AND2 C91 ( .A(N2), .B(N27), .Z(N5) );
-  GTECH_NOT I_1 ( .A(averager_clr), .Z(N26) );
-  GTECH_AND2 C93 ( .A(averager_add), .B(N26), .Z(N27) );
-  GTECH_AND2 C94 ( .A(N5), .B(N26), .Z(net126) );
-  GTECH_NOT I_2 ( .A(averager_add), .Z(N28) );
-  GTECH_AND2 C96 ( .A(N26), .B(N28), .Z(N29) );
-  GTECH_AND2 C97 ( .A(averager_avg), .B(N29), .Z(N30) );
+  averager_DW01_add_0 add_295 ( .A({1'b0, 1'b0, fifo_data}), .B({temp_reg, 
+        ram_data}), .CI(1'b0), .SUM({N15, N14, N13, N12, N11, N10, N9, N8, N7, 
+        N6}) );
+  DFFARX1 \temp_reg_reg[9]  ( .D(n7), .CLK(clk_2), .RSTB(reset_n), .Q(
+        temp_reg[9]) );
+  DFFARX1 \temp_reg_reg[1]  ( .D(n15), .CLK(clk_2), .RSTB(reset_n), .Q(
+        ram_data[1]) );
+  DFFARX1 \temp_reg_reg[0]  ( .D(n16), .CLK(clk_2), .RSTB(reset_n), .Q(
+        ram_data[0]) );
+  DFFARX1 \temp_reg_reg[6]  ( .D(n10), .CLK(clk_2), .RSTB(reset_n), .Q(
+        ram_data[6]) );
+  DFFARX1 \temp_reg_reg[4]  ( .D(n12), .CLK(clk_2), .RSTB(reset_n), .Q(
+        ram_data[4]) );
+  DFFARX1 \temp_reg_reg[2]  ( .D(n14), .CLK(clk_2), .RSTB(reset_n), .Q(
+        ram_data[2]) );
+  DFFARX1 \temp_reg_reg[7]  ( .D(n9), .CLK(clk_2), .RSTB(reset_n), .Q(
+        ram_data[7]) );
+  DFFARX1 \temp_reg_reg[5]  ( .D(n11), .CLK(clk_2), .RSTB(reset_n), .Q(
+        ram_data[5]) );
+  DFFARX1 \temp_reg_reg[3]  ( .D(n13), .CLK(clk_2), .RSTB(reset_n), .Q(
+        ram_data[3]) );
+  DFFARX1 \temp_reg_reg[8]  ( .D(n8), .CLK(clk_2), .RSTB(reset_n), .Q(
+        temp_reg[8]) );
+  AO222X1 U2 ( .IN1(ram_data[7]), .IN2(n2), .IN3(temp_reg[9]), .IN4(n3), .IN5(
+        N13), .IN6(n4), .Q(n9) );
+  AO22X1 U4 ( .IN1(N14), .IN2(n4), .IN3(temp_reg[8]), .IN4(n2), .Q(n8) );
+  AO22X1 U5 ( .IN1(N15), .IN2(n4), .IN3(n2), .IN4(temp_reg[9]), .Q(n7) );
+  AO222X1 U6 ( .IN1(ram_data[0]), .IN2(n2), .IN3(ram_data[2]), .IN4(n3), .IN5(
+        N6), .IN6(n4), .Q(n16) );
+  AO222X1 U7 ( .IN1(ram_data[1]), .IN2(n2), .IN3(ram_data[3]), .IN4(n3), .IN5(
+        N7), .IN6(n4), .Q(n15) );
+  AO222X1 U8 ( .IN1(ram_data[2]), .IN2(n2), .IN3(ram_data[4]), .IN4(n3), .IN5(
+        N8), .IN6(n4), .Q(n14) );
+  AO222X1 U9 ( .IN1(ram_data[3]), .IN2(n2), .IN3(ram_data[5]), .IN4(n3), .IN5(
+        N9), .IN6(n4), .Q(n13) );
+  AO222X1 U10 ( .IN1(ram_data[4]), .IN2(n2), .IN3(ram_data[6]), .IN4(n3), 
+        .IN5(N10), .IN6(n4), .Q(n12) );
+  AO222X1 U11 ( .IN1(ram_data[5]), .IN2(n2), .IN3(ram_data[7]), .IN4(n3), 
+        .IN5(N11), .IN6(n4), .Q(n11) );
+  AO222X1 U12 ( .IN1(ram_data[6]), .IN2(n2), .IN3(temp_reg[8]), .IN4(n3), 
+        .IN5(N12), .IN6(n4), .Q(n10) );
+  NOR2X0 U13 ( .IN1(n5), .IN2(averager_clr), .QN(n4) );
+  INVX0 U14 ( .IN(averager_add), .QN(n5) );
+  NOR3X0 U15 ( .IN1(averager_add), .IN2(averager_clr), .IN3(n2), .QN(n3) );
+  NOR3X0 U16 ( .IN1(averager_clr), .IN2(averager_avg), .IN3(averager_add), 
+        .QN(n2) );
 endmodule
 
 
 module ram_addr_controller ( ram_wr_n, reset_n, ram_addr );
   output [10:0] ram_addr;
   input ram_wr_n, reset_n;
-  wire   N0, N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14, N15,
-         N16, N17, N18, N19, N20, N21, N22, N23, N24, N25, N26, N27, N28, N29,
-         N30, N31, N32, N33, N34, N35, N36, net158;
+  wire   N16, N17, N18, N19, N20, N21, N22, N23, N24, N25, n1, n2, n3, n4, n5,
+         n6, n7, n8, n9, n10, n11, n12, n13, n14, n15, n16;
 
-  \**SEQGEN**  \ram_addr_reg[10]  ( .clear(1'b0), .preset(N2), .next_state(N25), .clocked_on(ram_wr_n), .data_in(1'b0), .enable(1'b0), .Q(ram_addr[10]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(1'b1) );
-  \**SEQGEN**  \ram_addr_reg[9]  ( .clear(1'b0), .preset(N2), .next_state(N24), 
-        .clocked_on(ram_wr_n), .data_in(1'b0), .enable(1'b0), .Q(ram_addr[9]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(1'b1) );
-  \**SEQGEN**  \ram_addr_reg[8]  ( .clear(1'b0), .preset(N2), .next_state(N23), 
-        .clocked_on(ram_wr_n), .data_in(1'b0), .enable(1'b0), .Q(ram_addr[8]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(1'b1) );
-  \**SEQGEN**  \ram_addr_reg[7]  ( .clear(1'b0), .preset(N2), .next_state(N22), 
-        .clocked_on(ram_wr_n), .data_in(1'b0), .enable(1'b0), .Q(ram_addr[7]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(1'b1) );
-  \**SEQGEN**  \ram_addr_reg[6]  ( .clear(1'b0), .preset(N2), .next_state(N21), 
-        .clocked_on(ram_wr_n), .data_in(1'b0), .enable(1'b0), .Q(ram_addr[6]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(1'b1) );
-  \**SEQGEN**  \ram_addr_reg[5]  ( .clear(1'b0), .preset(N2), .next_state(N20), 
-        .clocked_on(ram_wr_n), .data_in(1'b0), .enable(1'b0), .Q(ram_addr[5]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(1'b1) );
-  \**SEQGEN**  \ram_addr_reg[4]  ( .clear(1'b0), .preset(N2), .next_state(N19), 
-        .clocked_on(ram_wr_n), .data_in(1'b0), .enable(1'b0), .Q(ram_addr[4]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(1'b1) );
-  \**SEQGEN**  \ram_addr_reg[3]  ( .clear(1'b0), .preset(N2), .next_state(N18), 
-        .clocked_on(ram_wr_n), .data_in(1'b0), .enable(1'b0), .Q(ram_addr[3]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(1'b1) );
-  \**SEQGEN**  \ram_addr_reg[2]  ( .clear(1'b0), .preset(N2), .next_state(N17), 
-        .clocked_on(ram_wr_n), .data_in(1'b0), .enable(1'b0), .Q(ram_addr[2]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(1'b1) );
-  \**SEQGEN**  \ram_addr_reg[1]  ( .clear(1'b0), .preset(N2), .next_state(N16), 
-        .clocked_on(ram_wr_n), .data_in(1'b0), .enable(1'b0), .Q(ram_addr[1]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(1'b1) );
-  \**SEQGEN**  \ram_addr_reg[0]  ( .clear(1'b0), .preset(N2), .next_state(N15), 
-        .clocked_on(ram_wr_n), .data_in(1'b0), .enable(1'b0), .Q(ram_addr[0]), 
-        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
-        .synch_enable(1'b1) );
-  GTECH_OR2 C47 ( .A(ram_addr[9]), .B(ram_addr[10]), .Z(N26) );
-  GTECH_OR2 C48 ( .A(ram_addr[8]), .B(N26), .Z(N27) );
-  GTECH_OR2 C49 ( .A(ram_addr[7]), .B(N27), .Z(N28) );
-  GTECH_OR2 C50 ( .A(ram_addr[6]), .B(N28), .Z(N29) );
-  GTECH_OR2 C51 ( .A(ram_addr[5]), .B(N29), .Z(N30) );
-  GTECH_OR2 C52 ( .A(ram_addr[4]), .B(N30), .Z(N31) );
-  GTECH_OR2 C53 ( .A(ram_addr[3]), .B(N31), .Z(N32) );
-  GTECH_OR2 C54 ( .A(ram_addr[2]), .B(N32), .Z(N33) );
-  GTECH_OR2 C55 ( .A(ram_addr[1]), .B(N33), .Z(N34) );
-  GTECH_OR2 C56 ( .A(ram_addr[0]), .B(N34), .Z(N35) );
-  GTECH_NOT I_0 ( .A(N35), .Z(N36) );
-  SUB_UNS_OP sub_319 ( .A(ram_addr), .B(1'b1), .Z({N14, N13, N12, N11, N10, N9, 
-        N8, N7, N6, N5, N4}) );
-  SELECT_OP C58 ( .DATA1({1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 
-        1'b1, 1'b1}), .DATA2({N14, N13, N12, N11, N10, N9, N8, N7, N6, N5, N4}), .CONTROL1(N0), .CONTROL2(N1), .Z({N25, N24, N23, N22, N21, N20, N19, N18, 
-        N17, N16, N15}) );
-  GTECH_BUF B_0 ( .A(N36), .Z(N0) );
-  GTECH_BUF B_1 ( .A(N35), .Z(N1) );
-  GTECH_NOT I_1 ( .A(reset_n), .Z(N2) );
-  GTECH_BUF B_2 ( .A(reset_n), .Z(N3) );
-  GTECH_AND2 C66 ( .A(N3), .B(N35), .Z(net158) );
+  DFFASX1 \ram_addr_reg[4]  ( .D(N19), .CLK(ram_wr_n), .SETB(reset_n), .Q(
+        ram_addr[4]), .QN(n5) );
+  DFFASX1 \ram_addr_reg[8]  ( .D(N23), .CLK(ram_wr_n), .SETB(reset_n), .Q(
+        ram_addr[8]), .QN(n4) );
+  DFFASX1 \ram_addr_reg[10]  ( .D(N25), .CLK(ram_wr_n), .SETB(reset_n), .Q(
+        ram_addr[10]) );
+  DFFASX1 \ram_addr_reg[2]  ( .D(N17), .CLK(ram_wr_n), .SETB(reset_n), .Q(
+        ram_addr[2]) );
+  DFFASX1 \ram_addr_reg[6]  ( .D(N21), .CLK(ram_wr_n), .SETB(reset_n), .Q(
+        ram_addr[6]) );
+  DFFASX1 \ram_addr_reg[3]  ( .D(N18), .CLK(ram_wr_n), .SETB(reset_n), .Q(
+        ram_addr[3]), .QN(n2) );
+  DFFASX1 \ram_addr_reg[7]  ( .D(N22), .CLK(ram_wr_n), .SETB(reset_n), .Q(
+        ram_addr[7]), .QN(n1) );
+  DFFASX1 \ram_addr_reg[1]  ( .D(N16), .CLK(ram_wr_n), .SETB(reset_n), .Q(
+        ram_addr[1]) );
+  DFFASX1 \ram_addr_reg[0]  ( .D(n3), .CLK(ram_wr_n), .SETB(reset_n), .Q(
+        ram_addr[0]), .QN(n3) );
+  DFFASX1 \ram_addr_reg[5]  ( .D(N20), .CLK(ram_wr_n), .SETB(reset_n), .Q(
+        ram_addr[5]) );
+  DFFASX1 \ram_addr_reg[9]  ( .D(N24), .CLK(ram_wr_n), .SETB(reset_n), .Q(
+        ram_addr[9]) );
+  AO22X1 U3 ( .IN1(n6), .IN2(n7), .IN3(ram_addr[10]), .IN4(n8), .Q(N25) );
+  OR2X1 U4 ( .IN1(n9), .IN2(ram_addr[9]), .Q(n8) );
+  NOR2X0 U5 ( .IN1(ram_addr[9]), .IN2(ram_addr[10]), .QN(n6) );
+  XOR2X1 U6 ( .IN1(ram_addr[9]), .IN2(n7), .Q(N24) );
+  INVX0 U7 ( .IN(n9), .QN(n7) );
+  NAND2X0 U8 ( .IN1(n10), .IN2(n9), .QN(N23) );
+  NAND3X0 U9 ( .IN1(n1), .IN2(n4), .IN3(n11), .QN(n9) );
+  AO21X1 U10 ( .IN1(n11), .IN2(n1), .IN3(n4), .Q(n10) );
+  XOR2X1 U11 ( .IN1(ram_addr[7]), .IN2(n11), .Q(N22) );
+  AO21X1 U12 ( .IN1(ram_addr[6]), .IN2(n12), .IN3(n11), .Q(N21) );
+  NOR3X0 U13 ( .IN1(ram_addr[5]), .IN2(ram_addr[6]), .IN3(n13), .QN(n11) );
+  OR2X1 U14 ( .IN1(n13), .IN2(ram_addr[5]), .Q(n12) );
+  XNOR2X1 U15 ( .IN1(ram_addr[5]), .IN2(n13), .Q(N20) );
+  NAND2X0 U16 ( .IN1(n14), .IN2(n13), .QN(N19) );
+  NAND3X0 U17 ( .IN1(n2), .IN2(n5), .IN3(n15), .QN(n13) );
+  AO21X1 U18 ( .IN1(n15), .IN2(n2), .IN3(n5), .Q(n14) );
+  XOR2X1 U19 ( .IN1(ram_addr[3]), .IN2(n15), .Q(N18) );
+  AO21X1 U20 ( .IN1(ram_addr[2]), .IN2(n16), .IN3(n15), .Q(N17) );
+  NOR3X0 U21 ( .IN1(ram_addr[1]), .IN2(ram_addr[2]), .IN3(ram_addr[0]), .QN(
+        n15) );
+  OR2X1 U22 ( .IN1(ram_addr[1]), .IN2(ram_addr[0]), .Q(n16) );
+  XOR2X1 U23 ( .IN1(n3), .IN2(ram_addr[1]), .Q(N16) );
 endmodule
 
 
@@ -889,13 +560,11 @@ module tas ( clk_50, clk_2, reset_n, serial_data, data_ena, ram_wr_n, ram_data,
   input clk_50, clk_2, reset_n, serial_data, data_ena;
   output ram_wr_n;
   wire   is_data_byte, is_temperature_packet, shift_done, fifo_wr, fifo_rd,
-         fifo_empty, fifo_full, is_header_byte, averager_clr, averager_avg,
-         averager_add, N0;
+         fifo_empty, is_header_byte, averager_clr, averager_avg, averager_add;
   wire   [7:0] data;
   wire   [7:0] fifo_data;
 
-  fifo fifo1 ( .wr_clk(clk_50), .rd_clk(clk_2), .reset_n(reset_n), .wr(fifo_wr), .rd(fifo_rd), .data_in(data), .data_out(fifo_data), .empty(fifo_empty), 
-        .full(fifo_full) );
+  fifo fifo1 ( .wr_clk(clk_50), .rd_clk(clk_2), .reset_n(reset_n), .wr(fifo_wr), .rd(fifo_rd), .data_in(data), .data_out(fifo_data), .empty(fifo_empty) );
   packet_sm packet_sm1 ( .clk_50(clk_50), .reset_n(reset_n), .shift_done(
         shift_done), .is_header_byte(is_header_byte), .is_data_byte(
         is_data_byte) );
@@ -911,7 +580,6 @@ module tas ( clk_50, clk_2, reset_n, serial_data, data_ena, ram_wr_n, ram_data,
         averager_clr), .averager_add(averager_add), .averager_avg(averager_avg), .fifo_data(fifo_data), .ram_data(ram_data) );
   ram_addr_controller ram_addr_controller1 ( .ram_wr_n(ram_wr_n), .reset_n(
         reset_n), .ram_addr(ram_addr) );
-  GTECH_AND2 C7 ( .A(N0), .B(shift_done), .Z(fifo_wr) );
-  GTECH_AND2 C8 ( .A(is_data_byte), .B(is_temperature_packet), .Z(N0) );
+  AND3X1 U2 ( .IN1(is_temperature_packet), .IN2(is_data_byte), .IN3(shift_done), .Q(fifo_wr) );
 endmodule
 

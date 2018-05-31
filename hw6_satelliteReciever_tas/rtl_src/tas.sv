@@ -335,8 +335,8 @@ module fifo (
        );
 
     // Internal connections
-    logic [2:0] rd_pnt;
-    logic [2:0] wr_pnt;
+    logic [1:0] rd_pnt;
+    logic [1:0] wr_pnt;
     logic       rd_toggle;
     logic       wr_toggle;
     logic [7:0] rd_mem_out;
@@ -367,16 +367,16 @@ endmodule // fifo
 //-------------------------------------------------------------------
 module memory (
     input               wr_clk,
-    input   logic [2:0] wr_pnt,   // write address + toggle bit
+    input   logic [1:0] wr_pnt,   // write address + toggle bit
     input   logic [7:0] data_in,     // data to write at wr_pnt
     input   logic       wr,          // write enable
-    input   logic [2:0] rd_pnt,   // read address + toggle bit
+    input   logic [1:0] rd_pnt,   // read address + toggle bit
     input   logic       full,        // memory full
     output  logic [7:0] rd_mem_out   // continous assign by rd_pnt
     );
 
     // internal connections and comb logic
-    logic [7:0] mem [7:0];  // 8 x 16 memory
+    logic [7:0] mem [3:0];  // 8 x 16 memory
     assign rd_mem_out = mem[rd_pnt];
 
     // Write to the wr_pnt address, (bits 0-2)
@@ -391,8 +391,8 @@ endmodule // memory
 // This module determines if the memory is empty or full
 //-------------------------------------------------------------------
 module empty_full (
-    input logic [2:0] wr_pnt,
-    input logic [2:0] rd_pnt,
+    input logic [1:0] wr_pnt,
+    input logic [1:0] rd_pnt,
     input logic       rd_toggle,
     input logic       wr_toggle,
     output logic      empty,
@@ -412,7 +412,7 @@ module read_pointer (
     input               reset_n,  //reset async active low
     input               rd,       //read strobe
     input               empty,    //memory empty
-    output logic [2:0]  rd_pnt,   //memory address to read from
+    output logic [1:0]  rd_pnt,   //memory address to read from
     output logic        rd_toggle //if the pointer has wrapped around
     );
 
@@ -435,7 +435,7 @@ module write_pointer (
     input               reset_n,  //reset async active low
     input               wr,       //read strobe
     input               full,     //memory empty
-    output logic [2:0]  wr_pnt,   //memory address to read from
+    output logic [1:0]  wr_pnt,   //memory address to read from
     output logic        wr_toggle //if the pointer has wrapped around
     );
 

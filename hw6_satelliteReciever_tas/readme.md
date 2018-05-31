@@ -3,7 +3,7 @@
 
 [RTL_src](../rtl_src/tas.sv)
 [testbench](../rtl_src/tb.sv)
-![Image](blob/master/hw6_satelliteReciever_tas/waveforms.PNG)
+![Image](https://github.com/jpmolden/ECE474/blob/master/hw6_satelliteReciever_tas/waveforms.PNG)
 <!-- ![Image](https://github.com/jpmolden/ECE474/blob/master/hw3_32bit_mult/mult_timingDiagram.PNG)
  -->
 ## Background

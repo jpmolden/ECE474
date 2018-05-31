@@ -1,9 +1,11 @@
 # ECE 474 Homework 6
 ## Temperature Averager System(tas)
 
-[RTL_src](../rtl_src/tas.sv)
-[testbench](../rtl_src/tb.sv)
-![Image](https://github.com/jpmolden/ECE474/blob/master/hw6_satelliteReciever_tas/waveforms.PNG)
+[RTL_src](../hw6_satelliteReciever_tas/rtl_src/tas.sv)
+  
+[testbench](../hw6_satelliteReciever_tas/rtl_src/tb.sv)
+  
+![Image](../hw6_satelliteReciever_tas/waveforms.PNG)
 <!-- ![Image](https://github.com/jpmolden/ECE474/blob/master/hw3_32bit_mult/mult_timingDiagram.PNG)
  -->
 ## Background

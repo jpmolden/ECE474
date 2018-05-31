@@ -1,10 +1,11 @@
 # ECE 474 Homework 6
 ## Temperature Averager System(tas)
 
-[RTL_src](../rtl_src/fifo.sv)
+[RTL_src](../rtl_src/tas.sv)
 [testbench](../rtl_src/tb.sv)
-
-
+![Image](../waveforms.PNG)
+<!-- ![Image](https://github.com/jpmolden/ECE474/blob/master/hw3_32bit_mult/mult_timingDiagram.PNG)
+ -->
 ## Background
 
 NASA has launched a space probe that is to orbit the moon of a planet in our solar system.

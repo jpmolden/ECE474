@@ -2,12 +2,21 @@
 ## Temperature Averager System(tas)
 
 [RTL_src](../hw6_satelliteReciever_tas/rtl_src/tas.sv)
+<<<<<<< HEAD
 
 [testbench](../hw6_satelliteReciever_tas/rtl_src/tb.sv)
 
 ![Image](../hw6_satelliteReciever_tas/blockschem.png)
 ![Image](../hw6_satelliteReciever_tas/tbwaveform.PNG)
 
+=======
+  
+[testbench](../hw6_satelliteReciever_tas/rtl_src/tb.sv)
+  
+![Image](../hw6_satelliteReciever_tas/waveforms.PNG)
+<!-- ![Image](https://github.com/jpmolden/ECE474/blob/master/hw3_32bit_mult/mult_timingDiagram.PNG)
+ -->
+>>>>>>> origin/master
 ## Background
 
 NASA has launched a space probe that is to orbit the moon of a planet in our solar system.

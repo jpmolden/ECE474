@@ -64,38 +64,17 @@ initial begin
   @(negedge clk_50);  //allows 2ns data setup to tas
   #((CYCLE_50/2)-2)   //make minus 10 for 10ns setup time
 
-  data_pat0();
-  $display("Temperature written should be 67. (0x43)");  //simple test pattern $display("Task");
-
-  temp25_fast();
-  $display("Task");//bursted input
-
-  ltdk0();
-  $display("Task");//double packet test, dark side burst
-
-  ltdk1();
-  $display("Task");//double packet test, dark side burst
-
-  temp7f();
-  $display("Task");//max data size test
-
-  ltdk2();
-   $display("Task");//double packet test, dark side burst
-
-  tn_ltdk0();
-   $display("Task");//double packet test, 2nd packet is non-temp
-
-  tn_ltdk1();
-  $display("Task"); //double packet test, 1nd packet is non-temp
-
-  non_fast0();
-   $display("Task");//max speed non-temp packet
-
-  tn_ltdk2();
-  $display("Task"); //double packet test, 2nd packet is non-temp
-
-  non_slow0();
-  $display("Task"); //min speed non-temp packet
+  data_pat0();     //simple test pattern
+  temp25_fast();   //bursted input
+  ltdk0();         //double packet test, dark side burst
+  ltdk1();         //double packet test, dark side burst
+  temp7f();        //max data size test
+  ltdk2();         //double packet test, dark side burst
+  tn_ltdk0();      //double packet test, 2nd packet is non-temp
+  tn_ltdk1();      //double packet test, 1nd packet is non-temp
+  non_fast0();     //max speed non-temp packet
+  tn_ltdk2();      //double packet test, 2nd packet is non-temp
+  non_slow0();     //min speed non-temp packet
 end
 
 //initial begin
@@ -114,8 +93,7 @@ begin
   data_ena = 1'b1; send_byte(8'h3A); data_ena = 1'b0; #(CYCLE_50*4);
   data_ena = 1'b1; send_byte(8'h55); data_ena = 1'b0; #(CYCLE_50*4);
   data_ena = 1'b1; send_byte(8'h43); data_ena = 1'b0; #(CYCLE_50*4);
-  data_ena = 1'b1; send_byte(8'h3C); data_ena = 1'b0; #(CYCLE_50);
-
+  data_ena = 1'b1; send_byte(8'h3C); data_ena = 1'b0; #(CYCLE_50*200);
 end
 endtask
 

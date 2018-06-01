@@ -60,14 +60,14 @@ fi
 #           timebases consistent.  It defaults to nS.
 #    Note2: You will probably get at message: "# Missing signal name or pattern"
 #           This can be safely ignored.
-if [ -f "./scripts/$1.do" ]; then
+if [ -f "$1.do" ]; then
     echo ""
-    echo "INFO: ./scripts/$1.do exists, .doing"
+    echo "INFO: $1.do exists, .doing"
     echo ""
-    vsim $1 -do ./scripts/$1.do -quiet -c -t 1ns
+    vsim $1 -do $1.do -quiet -c -t 1ns
 else
     echo ""
-    echo "INFO: ./scripts/$1.do not found, exiting"
+    echo "INFO: $1.do not found, exiting"
     echo ""
     exit
 fi

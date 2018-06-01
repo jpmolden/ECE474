@@ -1,11 +1,13 @@
 # ECE 474 Homework 6
 ## Temperature Averager System(tas)
 
-[RTL_src](../rtl_src/tas.sv)
-[testbench](../rtl_src/tb.sv)
-![Image](../waveforms.PNG)
-<!-- ![Image](https://github.com/jpmolden/ECE474/blob/master/hw3_32bit_mult/mult_timingDiagram.PNG)
- -->
+[RTL_src](../hw6_satelliteReciever_tas/rtl_src/tas.sv)
+
+[testbench](../hw6_satelliteReciever_tas/rtl_src/tb.sv)
+
+![Image](../hw6_satelliteReciever_tas/blockschem.png)
+![Image](../hw6_satelliteReciever_tas/tbwaveform.PNG)
+
 ## Background
 
 NASA has launched a space probe that is to orbit the moon of a planet in our solar system.
@@ -37,6 +39,8 @@ and write the hourly average temperatures into a two-port static RAM (2K x 8) wh
 ther processing will take place with the aid of a microcomputer.
 The interface of the tas to the outside world is as follows:
 
+## Top Level Interface
+```
 module tas (
        input  clk_50,               // 50Mhz input clock
        input  clk_2,                // 2Mhz input clock
@@ -47,7 +51,7 @@ module tas (
        output [7:0] ram_data,       // ram data
        output [10:0] ram_addr       // ram address
        );
-
+```
 
 ## Message Protocol:
 

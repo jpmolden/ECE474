@@ -1,0 +1,33 @@
+
+****************************************
+Report : cell
+Design : tas
+Version: L-2016.03-SP2
+Date   : Fri Jun  1 02:34:33 2018
+****************************************
+
+Attributes:
+    b - black box (unknown)
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    u - contains unmapped logic
+
+Cell                      Reference       Library             Area  Attributes
+--------------------------------------------------------------------------------
+U2                        AND2X1          saed90nm_typ    7.445000
+averager1                 averager                        640.496990
+                                                                    h, n
+fifo1                     fifo                            2368.729998
+                                                                    h, n
+packet_sm1                packet_sm                       177.020001
+                                                                    h, n
+packet_type1              packet_type                     96.696000 h, n
+ram_addr_controller1      ram_addr_controller             541.725996
+                                                                    h, n
+read_controller1          read_controller                 37.786001 h, n
+serialdata_to_parallel1   serialdata_to_parallel          532.744998
+                                                                    h, n
+--------------------------------------------------------------------------------
+Total 8 cells                                             4402.644984
+1

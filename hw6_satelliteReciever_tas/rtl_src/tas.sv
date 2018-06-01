@@ -12,50 +12,66 @@ module tas (
     output [10:0] ram_addr       // ram address
     );
 
-
     // internal connections
     logic [7:0] data;
+    logic [7:0] average;
     logic       shift_done; // strobes when the byte is read
-    logic [9:0] running_total;
-    logic is_header_byte;
+    logic       is_header_byte;
+    logic       fifo_wr_rdy;
+    logic       is_temperature_packet;
+    logic       fifo_wr;
+    logic       fifo_empty;
+    logic       fifo_full;
+    logic       fifo_rd;
 
-
-
+    // Takes serial data in parrallel byte out
     serialdata_to_parallel serialdata_to_parallel1(.*);
 
-    logic fifo_wr_rdy;
+    // State machine to track header,byte 1,2,3,4
     packet_sm packet_sm1(.*);
 
-
-    logic is_temperature_packet;
+    // State machine to detect packet type
     packet_type packet_type1(.*);
 
-
+    // Controls the ram write address
     ram_addr_controller ram_addr_controller1(.*);
 
-
-
-        logic fifo_wr;
-        logic fifo_empty;
-        logic fifo_full;
-        logic fifo_rd;
-
+    // Controls the read fifo operation
     read_controller read_controller1(.*);
 
+    // Dual clock fifo module
     fifo fifo1 (
        .wr_clk(clk_50),   //write clock
        .rd_clk(clk_2),   //read clock
        .reset_n(reset_n),  //reset async active low
        .wr(fifo_wr),       //write enable
        .rd(fifo_rd),       //read enable
-       .data_in(running_total[9:2]),  //data in
+       .data_in(average),  //data in
        .data_out(ram_data), //data out
        .empty(fifo_empty),    //empty flag
        .full(fifo_full)     //full flag
-       );
+    );
 
-
+    // fifo write enable
     assign fifo_wr = is_temperature_packet && fifo_wr_rdy;
+
+    // Averager
+    averager averager1(.*);
+
+endmodule // tas
+
+//-------------------------------------------------------------------
+// Continously adds on shift done, clears on the header state
+//-------------------------------------------------------------------
+module averager (
+    input clk_50,    // Clock
+    input is_header_byte,  // Asynchronous reset active low
+    input shift_done,
+    input  logic [7:0] data,
+    output logic [7:0] average
+    );
+
+    logic [9:0] running_total;
 
     always_ff @(posedge clk_50) begin
         if(is_header_byte)
@@ -66,8 +82,11 @@ module tas (
             running_total <= running_total;
     end
 
+    // Assigns the upper 8 bits = total<<2, total/4
+    assign average = running_total[9:2];
 
-endmodule // tas
+endmodule
+
 
 //-------------------------------------------------------------------
 // captures serial data to parallel while data_ena is asserted
@@ -219,6 +238,9 @@ module ram_addr_controller(
 endmodule
 
 
+//-------------------------------------------------------------------
+// read_controller - controls the fifo read and ram write operations
+//-------------------------------------------------------------------
 module read_controller (
     input clk_2,    // Clock
     input reset_n,  // Asynchronous reset active low
@@ -226,6 +248,8 @@ module read_controller (
     output fifo_rd,
     output ram_wr_n
     );
+
+    assign fifo_rd = ~fifo_empty;
 
     enum logic{
         WAIT    = 1'b0,
@@ -239,6 +263,7 @@ module read_controller (
         else
           read_controller_sm_ps <= read_controller_sm_ns;
 
+        // waits untill the fifo isn't empty
         always_comb begin
             case (read_controller_sm_ps)
                 WAIT:
@@ -261,8 +286,9 @@ module read_controller (
 endmodule
 
 
-
-
+//-------------------------------------------------------------------
+// 4 byte dual clock fifo
+//-------------------------------------------------------------------
 module fifo (
    input            wr_clk,   //write clock
    input            rd_clk,   //read clock
@@ -304,7 +330,7 @@ endmodule // fifo
 
 
 //-------------------------------------------------------------------
-// This module creates the 8 x 8 memory
+// This module creates the 8 x 4 memory
 //-------------------------------------------------------------------
 module memory (
     input               wr_clk,

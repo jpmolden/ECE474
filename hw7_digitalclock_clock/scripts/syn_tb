@@ -1,0 +1,8 @@
+read_sverilog ./rtl_src/tb.sv
+link
+compile
+report_timing
+report_area
+write list tb-gate.list
+write -format verilog -hierarchy -output tb.gate.v
+quit

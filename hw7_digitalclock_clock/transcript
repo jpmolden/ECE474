@@ -1,0 +1,164 @@
+# //  ModelSim SE-64 10.5 Feb 12 2016 Linux 3.10.0-693.11.1.el7.x86_64
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# vsim -novopt clock 
+# Start time: 03:19:16 on Jun 02,2018
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.clock
+# Loading sv_std.std
+# Loading work.clock
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.timer_seconds
+# Loading work.timer_seconds
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.timer_minutes
+# Loading work.timer_minutes
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.timer_hours
+# Loading work.timer_hours
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.convert_24
+# Loading work.convert_24
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.digit_select_sm
+# Loading work.digit_select_sm
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.digit_parse
+# Loading work.digit_parse
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.segment_mux
+# Loading work.segment_mux
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'time_seconds'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/timer_seconds File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'even_second'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/timer_seconds File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'min_tick'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/timer_seconds File: ./rtl_src/clock.sv
+# ** Warning: (vsim-3017) ./rtl_src/clock.sv(13): [TFMPC] - Too few port connections. Expected 5, found 2.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/timer_seconds File: ./rtl_src/clock.sv
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(13): [TFMPC] - Missing connection for port 'time_seconds'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(13): [TFMPC] - Missing connection for port 'even_second'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(13): [TFMPC] - Missing connection for port 'min_tick'.
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'min_tick'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/timer_minutes File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'time_minutes'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/timer_minutes File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'hr_tick'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/timer_minutes File: ./rtl_src/clock.sv
+# ** Warning: (vsim-3017) ./rtl_src/clock.sv(14): [TFMPC] - Too few port connections. Expected 5, found 2.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/timer_minutes File: ./rtl_src/clock.sv
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(14): [TFMPC] - Missing connection for port 'min_tick'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(14): [TFMPC] - Missing connection for port 'time_minutes'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(14): [TFMPC] - Missing connection for port 'hr_tick'.
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'hr_tick'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/timer_hours File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'time_hrs'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/timer_hours File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'am_pm'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/timer_hours File: ./rtl_src/clock.sv
+# ** Warning: (vsim-3017) ./rtl_src/clock.sv(15): [TFMPC] - Too few port connections. Expected 5, found 2.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/timer_hours File: ./rtl_src/clock.sv
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(15): [TFMPC] - Missing connection for port 'hr_tick'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(15): [TFMPC] - Missing connection for port 'time_hrs'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(15): [TFMPC] - Missing connection for port 'am_pm'.
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'time_hrs'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/convert_24 File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'am_pm'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/convert_24 File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'time_hrs_f'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/convert_24 File: ./rtl_src/clock.sv
+# ** Warning: (vsim-3017) ./rtl_src/clock.sv(16): [TFMPC] - Too few port connections. Expected 4, found 1.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/convert_24 File: ./rtl_src/clock.sv
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(16): [TFMPC] - Missing connection for port 'time_hrs'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(16): [TFMPC] - Missing connection for port 'am_pm'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(16): [TFMPC] - Missing connection for port 'time_hrs_f'.
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'time_minutes'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/digit_parse File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'time_hrs_f'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/digit_parse File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'even_second'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/digit_parse File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'am_pm'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/digit_parse File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'digit_0'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/digit_parse File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'digit_1'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/digit_parse File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'digit_2'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/digit_parse File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'digit_3'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/digit_parse File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'digit_4'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/digit_parse File: ./rtl_src/clock.sv
+# ** Warning: (vsim-3017) ./rtl_src/clock.sv(18): [TFMPC] - Too few port connections. Expected 9, found 0.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/digit_parse File: ./rtl_src/clock.sv
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(18): [TFMPC] - Missing connection for port 'time_minutes'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(18): [TFMPC] - Missing connection for port 'time_hrs_f'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(18): [TFMPC] - Missing connection for port 'even_second'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(18): [TFMPC] - Missing connection for port 'am_pm'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(18): [TFMPC] - Missing connection for port 'digit_0'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(18): [TFMPC] - Missing connection for port 'digit_1'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(18): [TFMPC] - Missing connection for port 'digit_2'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(18): [TFMPC] - Missing connection for port 'digit_3'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(18): [TFMPC] - Missing connection for port 'digit_4'.
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'digit_0'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/segment_mux File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'digit_1'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/segment_mux File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'digit_2'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/segment_mux File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'digit_3'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/segment_mux File: ./rtl_src/clock.sv
+# ** Error: (vsim-3694) The implicit port connection (.*) did not find a matching port, net, variable or interface instance in clock for port 'digit_4'.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/segment_mux File: ./rtl_src/clock.sv
+# ** Warning: (vsim-3017) ./rtl_src/clock.sv(19): [TFMPC] - Too few port connections. Expected 7, found 2.
+#    Time: 0 ns  Iteration: 0  Instance: /clock/segment_mux File: ./rtl_src/clock.sv
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(19): [TFMPC] - Missing connection for port 'digit_0'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(19): [TFMPC] - Missing connection for port 'digit_1'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(19): [TFMPC] - Missing connection for port 'digit_2'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(19): [TFMPC] - Missing connection for port 'digit_3'.
+# ** Warning: (vsim-3722) ./rtl_src/clock.sv(19): [TFMPC] - Missing connection for port 'digit_4'.
+# Error loading design
+# End time: 03:19:20 on Jun 02,2018, Elapsed time: 0:00:04
+# Errors: 26, Warnings: 33
+vlog -reportprogress 300 -work work /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/rtl_src/clock.sv
+# Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 12 2016
+# Start time: 03:28:10 on Jun 02,2018
+# vlog -reportprogress 300 -work work /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/rtl_src/clock.sv 
+# -- Compiling module clock
+# -- Compiling module timer_seconds
+# -- Compiling module timer_minutes
+# -- Compiling module timer_hours
+# -- Compiling module convert_24
+# -- Compiling module digit_select_sm
+# -- Compiling module digit_parse
+# -- Compiling module segment_mux
+# 
+# Top level modules:
+# 	clock
+# End time: 03:28:10 on Jun 02,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim -novopt clock 
+# vsim -novopt clock 
+# Start time: 03:28:27 on Jun 02,2018
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.clock
+# Loading sv_std.std
+# Loading work.clock
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.timer_seconds
+# Loading work.timer_seconds
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.timer_minutes
+# Loading work.timer_minutes
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.timer_hours
+# Loading work.timer_hours
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.convert_24
+# Loading work.convert_24
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.digit_select_sm
+# Loading work.digit_select_sm
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.digit_parse
+# Loading work.digit_parse
+# Refreshing /nfs/stak/users/moldenj/ECE474/hw7_digitalclock_clock/work.segment_mux
+# Loading work.segment_mux

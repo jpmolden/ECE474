@@ -1,9 +1,9 @@
 # ECE 474 Homework 7
 ## Digital Clock
 
-[RTL_src](../hw7_digitalclock_clock/rtl_src/tas.sv)
+[RTL_src](../hw7_digitalclock_clock/rtl_src/clock.sv)
 
-[testbench](../hw7_digitalclock_clock/rtl_src/tb.sv)
+[testbench](../hw7_digitalclock_clock/rtl_src/clock_tb.sv)
 
 ![Image](../hw7_digitalclock_clock/blockschem.png)
 <!-- ![Image](../hw7_digitalclock_clock/tbwaveform.PNG) -->

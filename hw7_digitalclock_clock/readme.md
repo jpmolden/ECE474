@@ -6,12 +6,13 @@
 [testbench](../hw7_digitalclock_clock/rtl_src/tb.sv)
 
 ![Image](../hw7_digitalclock_clock/blockschem.png)
-![Image](../hw7_digitalclock_clock/tbwaveform.PNG)
-
+<!-- ![Image](../hw7_digitalclock_clock/tbwaveform.PNG) -->
 
 ## Introduction:
 
 In this homework, we will write verilog code for digital clock.
+The clock drives a 4 digit 7-segment display.
+Manual time change functions are not included.
 
 ## Top Level Interface
 ```

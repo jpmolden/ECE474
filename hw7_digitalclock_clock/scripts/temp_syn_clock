@@ -1,0 +1,9 @@
+read_sverilog ./rtl_src/clock.sv
+compile
+link
+report_timing
+report_cell
+report_reference -nosplit -hierarchy
+report_area
+write -format verilog -hierarchy -output clock.gate.v
+quit

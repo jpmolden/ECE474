@@ -36,6 +36,9 @@ module clock(
 	digit_parse		digit_parse(.*);
 	segment_mux		segment_mux(.*);
 
+        logic [6:0] segment_decimal;
+    segment_code        segment_code(.*);
+
 endmodule // clock
 
 
@@ -61,8 +64,8 @@ module timer_seconds (
     end
 
     // assign outputs
-    assign min_tick = time_seconds && 7'd59;
-    assign even_second = time_seconds[0] && 1'b0;
+    assign min_tick = time_seconds == 7'd59;
+    assign even_second = time_seconds[0] == 1'b0;
 endmodule // timer_seconds
 
 
@@ -81,14 +84,14 @@ module timer_minutes (
     always_ff @(posedge clk_1sec, negedge reset_n) begin
         if(~reset_n)
             time_minutes <= '0;
-        else if ((time_minutes !== 7'd59))
-            time_minutes <= time_minutes + min_tick;
-        else
+        else if ((time_minutes == 7'd59) && min_tick)
             time_minutes <= '0;
+        else
+            time_minutes <= time_minutes + min_tick;
     end // always_ff @(posedge clk_1sec, negedge reset_n)
 
     // assign outputs
-    assign hr_tick = time_minutes && 7'd59;
+    assign hr_tick = (time_minutes == 7'd59) & min_tick;
 endmodule // timer_seconds
 
 
@@ -107,10 +110,10 @@ module timer_hours (
     always_ff @(posedge clk_1sec, negedge reset_n) begin
         if(~reset_n)
             time_hrs <= '0;
-        else if ((time_hrs !== 7'd23))
-            time_hrs <= time_hrs + hr_tick;
-        else
+        else if ((time_hrs == 7'd23) && hr_tick)
             time_hrs <= '0;
+        else
+            time_hrs <= time_hrs + hr_tick;
     end // always_ff @(posedge clk_1sec, negedge reset_n)
 
     // am_pm toggle
@@ -118,11 +121,11 @@ module timer_hours (
         if(~reset_n)
             am_pm <= '0;
         else if ((time_hrs == 7'd11) || (time_hrs == 7'd23) )
-            am_pm <= ~am_pm;
+            am_pm <= am_pm + hr_tick;
         else
-            time_hrs <= am_pm;
+            am_pm <= am_pm;
     end
-endmodule // timer_seconds
+endmodule // timer_hours
 
 
 //-------------------------------------------------------------------
@@ -140,8 +143,10 @@ module convert_24 (
 			time_hrs_f = time_hrs;
 		else if ((time_hrs == 7'd0) || (time_hrs == 7'd12))
 			time_hrs_f = 7'd12;
-		else
-			time_hrs_f = time_hrs - (7'd12 & am_pm);
+		else if (am_pm)
+			time_hrs_f = time_hrs - 7'd12;
+        else
+            time_hrs_f = time_hrs;
 	end
 endmodule // convert_24
 
@@ -168,11 +173,11 @@ module digit_select_sm (
     // set the next digit address
     always_ff @(posedge clk_1ms, negedge reset_n) begin
     	if(~reset_n)
-    		digit_select <= D0;
-    	else if (digit_select == D4)
-    		digit_select <= D0;
+    		digit_select <= D4;
+    	else if (digit_select == D0)
+    		digit_select <= D4;
     	else
-    		digit_select <= digit_select + 1;
+    		digit_select <= digit_select - 1;
 	end
 endmodule // digit_select_sm
 
@@ -214,7 +219,7 @@ module segment_mux (
 	input  [6:0]	digit_2, // colon
 	input  [6:0]	digit_3,
 	input [6:0]	digit_4,
-	output logic [6:0] segment_data
+	output logic [6:0] segment_decimal
 	);
 
 	// 7 segment digit addresses
@@ -227,90 +232,45 @@ module segment_mux (
 	always_comb begin
 		case (digit_select)
 			D0:
-				segment_data = digit_0;
+				segment_decimal = digit_0;
 			D1:
-				segment_data = digit_1;
+				segment_decimal = digit_1;
 			MIDDLE:
-				segment_data = digit_2;
+				segment_decimal = digit_2; //digit_2;
 			D3:
-				segment_data = digit_3;
+				segment_decimal = digit_3;
 			D4:
-				segment_data = digit_4;
-			default : segment_data = digit_0;
+				segment_decimal = digit_4;
+			default : segment_decimal = 7'b001_1001;
 		endcase
 	end
-endmodule
+endmodule // segment_mux
 
 
-
-// //-------------------------------------------------------------------
-// //  - second counter, am_pm indicator and blink
-// //-------------------------------------------------------------------
-// module parser (
-//     input logic [19:0] time_seconds, // current time in seconds, 12/24
-//     input logic        even_second, // used to blink colon
-//     input logic        am_pm // 0 = AM, 1 = PM
-//     input              even_second,
-
-//     );
-
-//     parameter segment_data = ;
-//     parameter segment_data = ;
-//     parameter segment_data = ;
-//     parameter segment_data = ;
-//     parameter segment_data = ;
-//     parameter segment_data = ;
-//     parameter segment_data = ;
-//     parameter segment_data = ;
-//     parameter segment_data = ;
-//     parameter segment_data = ;
-//     parameter segment_data = ;
-
-//         0:      Final = 7'b000_0001;
-//         1:      Final = 7'b100_1111;
-//         2:      Final = 7'b001_0010;
-//         3:      Final = 7'b000_0110;
-//         4:      Final = 7'b100_1100;
-//         5:      Final = 7'b010_0100;
-//         6:      Final = 7'b010_0000;
-//         7:      Final = 7'b000_1111;
-//         8:      Final = 7'b000_0000;
-//         9:      Final = 7'b000_1100;
-//         default: Final = 7'b111_1111;
-
-
-// endmodule
-
-
-// module digit_sm (
-//     input             reset_n,             //reset pin
-//     input             clk_1ms,             //1 mili sec clock
-
-
-//     );
-//     parameter D0     = 3'b000; // First digit
-//     parameter D1     = 3'b001; // Second digit
-//     parameter MIDDLE = 3'b010; // Colon and AM/PM indicator
-//     parameter D3     = 3'b011; // Third digit
-//     parameter D4     = 3'b100; // Fourth digit
-
-//     logic
-
-
-
-
-
-
-
-
-
-//     always_ff @(posedge clk_1sec, negedge reset_n) begin
-//         if(~reset_n) begin
-//                 <= 0;
-//         end else begin
-//                  <= ;
-//         end
-//     end
-
-// endmodule // module
-
+//-------------------------------------------------------------------
+//
+//-------------------------------------------------------------------
+module segment_code (
+    input           [6:0] segment_decimal,
+    output logic    [6:0] segment_data
+    );
+    always_comb begin
+        case (segment_decimal)
+                0:      segment_data = 7'b000_0001;
+                1:      segment_data = 7'b100_1111;
+                2:      segment_data = 7'b001_0010;
+                3:      segment_data = 7'b000_0110;
+                4:      segment_data = 7'b100_1100;
+                5:      segment_data = 7'b010_0100;
+                6:      segment_data = 7'b010_0000;
+                7:      segment_data = 7'b000_1111;
+                8:      segment_data = 7'b000_0000;
+                9:      segment_data = 7'b000_1100;
+                7'b111_1111:segment_data = 7'b111_1111; // colon
+                7'b111_1011:segment_data = 7'b111_1011;
+                7'b111_1100:segment_data = 7'b111_1100;
+                7'b111_1000:segment_data = 7'b111_1000;
+                default : segment_data = 7'b001_1001;
+        endcase
+    end // always_comb
+endmodule // seg_code

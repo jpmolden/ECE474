@@ -64,7 +64,7 @@ if [ -f "./scripts/$1.do" ]; then
     echo ""
     echo "INFO: ./scripts/$1.do exists, .doing"
     echo ""
-    vsim $1 -do ./scripts/$1.do -quiet -c -t 1ns
+    vsim $1 -do ./scripts/$1.do -quiet -c -t 1us
 else
     echo ""
     echo "INFO: ./scripts/$1.do not found, exiting"

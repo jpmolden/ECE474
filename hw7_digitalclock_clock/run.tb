@@ -64,7 +64,7 @@ if [ -f "$1.do" ]; then
     echo ""
     echo "INFO: $1.do exists, .doing"
     echo ""
-    vsim $1 -do $1.do -quiet -c -t 1ns
+    vsim $1 -do $1.do -quiet -c -t 200us
 else
     echo ""
     echo "INFO: $1.do not found, exiting"
@@ -72,8 +72,8 @@ else
     exit
 fi
 
- # .if (the script syn_mult exists) then
- #  .{synthesize mult by executing the script}
+# .if (the script syn_mult exists) then
+#  .{synthesize mult by executing the script}
 # if [ -f syn_$1 ]; then
 #     echo ""
 #     echo "INFO: running synthesize script"

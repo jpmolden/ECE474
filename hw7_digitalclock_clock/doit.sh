@@ -64,7 +64,7 @@ veriog_file_dir=/nfs/guille/a1/cadlibs/synop_lib/SAED_EDK90nm/Digital_Standard_C
         echo ""
         echo "INFO: $1.do exists, .doing"
         echo ""
-        vsim $1 -do ./scripts/$1.do -quiet -c -t 1ns
+        vsim $1 -do ./scripts/$1.do -quiet -c -t 1us
         # create a list file for comparison to the gate level lis
         mv $1.list $1.rtl.list
         # Delete the vsim rtl list file
@@ -82,32 +82,32 @@ veriog_file_dir=/nfs/guille/a1/cadlibs/synop_lib/SAED_EDK90nm/Digital_Standard_C
         echo ""
         echo "INFO: running syn_$1 synthesize script"
         echo ""
-		
+
         dc_shell-xg-t -f ./scripts/syn_$1
         # design_vision-xg
     else
         echo ""
         echo "INFO: syn_$1 not found, using default script"
-		
+
 			echo "read_sverilog ./rtl_src/$1.sv" > "temp.txt"
-			echo "link" >> "temp.txt"
 			echo "compile" >> "temp.txt"
+            echo "link" >> "temp.txt"
 			echo "report_timing" >> "temp.txt"
-			echo "report_area" >> "temp.txt"
 			echo "report_cell" >> "temp.txt"
 			echo "report_reference -nosplit -hierarchy">> "temp.txt"
+            echo "report_area" >> "temp.txt"
 			echo "write -format verilog -hierarchy -output $1.gate.v" >> "temp.txt"
 			echo "quit" >> "temp.txt"
 			cp "temp.txt" "./scripts/temp_syn_$1"
 			rm "temp.txt"
-			
+
         dc_shell-xg-t -f ./scripts/temp_syn_$1
-		
+
         echo ""
         exit
     fi
 
-# # if (the gate library has not been compiled yet) then
+# # # if (the gate library has not been compiled yet) then
 # #   {synthesize the cell library into /work }
 # # Hint: to check for prior compilation, look in work/_info, grep cell name
 # grep -q XOR3X2.v work/_info

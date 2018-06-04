@@ -16,5 +16,5 @@ SystemVerilog code, testbenches and scripts (bash, tcl, do)
 | 7 |   [Digital Clock & 7-Seg Driver](hw7_digitalclock_clock) |   |
 
 
-![Image](../hw6_satelliteReciever_tas/blockschem.png)
-![Image](../hw7_digitalclock_clock/blockschem.png)
+![Image](../master/hw6_satelliteReciever_tas/blockschem.png)
+![Image](../master/hw7_digitalclock_clock/blockschem.png)

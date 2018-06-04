@@ -27,12 +27,12 @@ module clock(
 ```
 
 ## Running the testbench
-'''
+```
     ./doit clock_tb
-'''
+```
 
 ## Testbench console/file output snippet
-'''
+```
     # INFO: running for:             0 days,             0 hours,             0 mins,             2 seconds
     #   digit_4 = 1001111 decode: 1
     #   digit_3 = 0010010 decode: 2
@@ -51,4 +51,4 @@ module clock(
     #   digit_2 = 1111000 decode: :  PM
     #   digit_1 = 0000001 decode: 0
     #   digit_0 = 0000001 decode: 0
-'''
+```

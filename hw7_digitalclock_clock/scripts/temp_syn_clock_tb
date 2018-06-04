@@ -1,9 +1,9 @@
-read_sverilog ./rtl_src/clock_tb.sv
-link 
+read_sverilog ./rtl_src/clock.sv
 compile
+link
 report_timing
-report_area
 report_cell
 report_reference -nosplit -hierarchy
-write -format verilog -hierarchy -output clock_tb.gate.v
+report_area
+write -format verilog -hierarchy -output ./rtl_src/clock.gate.v
 quit

@@ -26,14 +26,29 @@ module clock(
     );
 ```
 
-## Requirments
+## Running the testbench
+'''
+    ./doit clock_tb
+'''
 
-2) Simulate clock behaviour using dofile.
-
-What to turn in:
-  Tar file of your code. It should have a shell script which simulates
-  the clock
-
-Grading
-  -Correct operation of clock                   -90%
-  -Code cleanliness, coding efficiency, style   -10%
+## Testbench console/file output snippet
+'''
+    # INFO: running for:             0 days,             0 hours,             0 mins,             2 seconds
+    #   digit_4 = 1001111 decode: 1
+    #   digit_3 = 0010010 decode: 2
+    #   digit_2 = 1111100 decode: :  AM
+    #   digit_1 = 0000001 decode: 0
+    #   digit_0 = 0000001 decode: 0
+    # INFO: running for:             0 days,            11 hours,            59 mins,            59 seconds
+    #   digit_4 = 1001111 decode: 1
+    #   digit_3 = 1001111 decode: 1
+    #   digit_2 = 1111111 decode:    AM
+    #   digit_1 = 0100100 decode: 5
+    #   digit_0 = 0001100 decode: 9
+    # INFO: running for:             0 days,            12 hours,             0 mins,             0 seconds
+    #   digit_4 = 1001111 decode: 1
+    #   digit_3 = 0010010 decode: 2
+    #   digit_2 = 1111000 decode: :  PM
+    #   digit_1 = 0000001 decode: 0
+    #   digit_0 = 0000001 decode: 0
+'''

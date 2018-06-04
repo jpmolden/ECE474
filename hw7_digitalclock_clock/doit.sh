@@ -1,6 +1,8 @@
 #!/bin/bash
 #script "doit"
 veriog_file_dir=/nfs/guille/a1/cadlibs/synop_lib/SAED_EDK90nm/Digital_Standard_Cell_Library/verilog
+modulename=clock
+
 #requires  one argument which is the module name of interest eg mult adder ect.
 #check for single arguement given
 # "$#" is the number of arguments give
@@ -47,7 +49,7 @@ veriog_file_dir=/nfs/guille/a1/cadlibs/synop_lib/SAED_EDK90nm/Digital_Standard_C
         echo ""
         echo "INFO: $1.sv Exists compiling"
         echo ""
-        vlog ./rtl_src/*
+        vlog ./rtl_src/*.sv
     else
         echo ""
         echo "INFO: $1.sv does not exist, exiting"
@@ -66,7 +68,7 @@ veriog_file_dir=/nfs/guille/a1/cadlibs/synop_lib/SAED_EDK90nm/Digital_Standard_C
         echo ""
         vsim $1 -do ./scripts/$1.do -quiet -c -t 1us
         # create a list file for comparison to the gate level lis
-        mv $1.list $1.rtl.list
+        # mv $1.list $1.rtl.list
         # Delete the vsim rtl list file
         rm $1.list
     else
@@ -76,8 +78,18 @@ veriog_file_dir=/nfs/guille/a1/cadlibs/synop_lib/SAED_EDK90nm/Digital_Standard_C
         exit
     fi
 
- # .if (the script syn_mult exists) then
- #  .{synthesize mult by executing the script}
+
+    echo "WARNING: THIS TAKES SEVERAL MINUTES"
+    echo " "
+    echo "Proceed with gate level sim and diff? y/n"
+
+
+read response
+if [ $response == "y" ]; then
+    echo "INFO: running gate simulation"
+    rm -r work
+    # if (the script syn_mult exists) then
+    #  {synthesize mult by executing the script}
     if [ -f ./scripts/syn_$1 ]; then
         echo ""
         echo "INFO: running syn_$1 synthesize script"
@@ -89,14 +101,14 @@ veriog_file_dir=/nfs/guille/a1/cadlibs/synop_lib/SAED_EDK90nm/Digital_Standard_C
         echo ""
         echo "INFO: syn_$1 not found, using default script"
 
-			echo "read_sverilog ./rtl_src/$1.sv" > "temp.txt"
+			echo "read_sverilog ./rtl_src/$modulename.sv" > "temp.txt"
 			echo "compile" >> "temp.txt"
             echo "link" >> "temp.txt"
 			echo "report_timing" >> "temp.txt"
 			echo "report_cell" >> "temp.txt"
 			echo "report_reference -nosplit -hierarchy">> "temp.txt"
             echo "report_area" >> "temp.txt"
-			echo "write -format verilog -hierarchy -output $1.gate.v" >> "temp.txt"
+			echo "write -format verilog -hierarchy -output ./rtl_src/$modulename.gate.v" >> "temp.txt"
 			echo "quit" >> "temp.txt"
 			cp "temp.txt" "./scripts/temp_syn_$1"
 			rm "temp.txt"
@@ -104,47 +116,55 @@ veriog_file_dir=/nfs/guille/a1/cadlibs/synop_lib/SAED_EDK90nm/Digital_Standard_C
         dc_shell-xg-t -f ./scripts/temp_syn_$1
 
         echo ""
+        # exit
+    fi
+
+    # # if (the gate library has not been compiled yet) then
+    #   {synthesize the cell library into /work }
+    # Hint: to check for prior compilation, look in work/_info, grep cell name
+    grep -q XOR3X2.v work/_info
+    if [ $? -eq 0 ]; then
+        echo "INFO: gate library already compiled"
+    else
+        echo ""
+        echo "INFO: compiling verilog source files in dir: $veriog_file_dir"
+        echo ""
+        vlog -quiet  $veriog_file_dir/*  -work work
+    fi
+
+    # if (mult.gate.v exists) then
+    #   {compile it}
+    if [ -f ./rtl_src/$modulename.gate.v ]; then
+        #statements
+        vlog ./rtl_src/$1.sv
+        vlog ./rtl_src/$modulename.gate.v | tee compile_log
+    else
+        echo ""
+        echo "INFO $modulename.gate.v not found, exiting"
+        echo ""
         exit
     fi
 
-# # # if (the gate library has not been compiled yet) then
-# #   {synthesize the cell library into /work }
-# # Hint: to check for prior compilation, look in work/_info, grep cell name
-# grep -q XOR3X2.v work/_info
-# if [ $? -eq 0 ]; then
-#     echo "INFO: gate library already compiled"
-# else
-#     echo ""
-#     echo "INFO: compiling verilog source files in dir: $veriog_file_dir"
-#     echo ""
-#     vlog -quiet  $veriog_file_dir/*  -work work
-# fi
+    mv output_data rtl.output_data
+    rm output_data
 
-# # if (mult.gate.v exists) then
-# #   {compile it}
-# if [ -f $1.gate.v ]; then
-#     #statements
-#     vlog $1.gate.v | tee compile_log
-# else
-#     echo ""
-#     echo "INFO $1.gate.v not found, exiting"
-#     echo ""
-#     exit
-# fi
+    #statements
+    # Run a simulation on the gate.v
+        vsim $1 -do ./scripts/$1.do -quiet -c +nowarnTFMPC +nowarnTSCALE -t 1us
+        mv output_data gate.output_data
+        rm output_data
+    # mv $1.list $1.gate.list
+    # rm $1.list
 
-# # Run a simulation on the gate.v
-# vsim $1 -do ./scripts/$1.do -quiet -c +nowarnTFMPC +nowarnTSCALE -t 1ns
-# mv $1.list $1.gate.list
-# rm $1.list
-
-# # Produce a diff report or message
-# diff $1.gate.list $1.rtl.list >| diff_report.txt
-# if [ $? -eq 0 ]; then
-#     echo ""
-#     echo "INFO: diff completed no diffs betweem RTL and GATE lists - SUCCESS"
-#     echo "SUCCESS"
-#     echo ""
-# else
-#     echo "INFO: diffs betweem RTL and GATE synthesis "
-#     diff $1.gate.list $1.rtl.list >| diff_report.txt
-# fi
+    # Produce a diff report or message
+        diff gate.output_data rtl.output_data >| diff_report.txt
+        if [ $? -eq 0 ]; then
+            echo ""
+            echo "INFO: diff completed no diffs betweem RTL and GATE lists - SUCCESS"
+            echo "SUCCESS"
+            echo ""
+        else
+            echo "INFO: diffs betweem RTL and GATE synthesis "
+            diff gate.output_data rtl.output_data >| diff_report.txt
+        fi
+fi

@@ -75,9 +75,7 @@ module gcd( input [31:0] a_in,          // operand a
 endmodule // gcd
 
 
-//-------------------------------------------------------------------
-// compare checks to see which reg is greater or contains zeros
-//-------------------------------------------------------------------
+
 module compare (
     input [31:0]        reg_a,
     input [31:0]        reg_b,

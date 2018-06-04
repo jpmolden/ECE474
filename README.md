@@ -2,6 +2,8 @@
 
 ## ECE 474/574 - VLSI System Design - Oregon State University
 
+SystemVerilog code, testbenches and scripts (bash, tcl, do)
+
 ### Homeworks
 
 | # | Title | Remark |
@@ -11,9 +13,8 @@
 | 4 |   [FIFO - first-in, first-out memory - Dual clock](hw4_8x8_fifo)  |  |
 | 5 |   [GCD - Elucid's greatest common divisor](hw5_32bit_GCD) | |
 | 6 |   [Temperature Averager System - Dual clock](hw6_satelliteReciever_tas) | |
-| 7 |   [Digital Clock](hw7_digitalclock_clock) |   |
+| 7 |   [Digital Clock & 7-Seg Driver](hw7_digitalclock_clock) |   |
 
 
-HW3 - 32bit Multiplier with bash and tcl scripts for RTL vs GATE synthesis & comparison
-![Image](https://github.com/jpmolden/ECE474/blob/master/hw3_32bit_mult/mult_blockdiagram.jpg)
-![Image](https://github.com/jpmolden/ECE474/blob/master/hw3_32bit_mult/mult_timingDiagram.PNG)
+![Image](../hw6_satelliteReciever_tas/blockschem.png)
+![Image](../hw7_digitalclock_clock/blockschem.png)

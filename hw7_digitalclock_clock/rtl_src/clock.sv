@@ -12,18 +12,18 @@ module clock(
 
 		 logic [6:0]  time_seconds; // current time in seconds 12/24
 	     logic        even_second; // used to blink colon
-	     logic 		min_tick;	// enable the minute counter
+	     logic 		  min_tick;	// enable the minute counter
 	timer_seconds timer_seconds(.*);
 
 		 logic [6:0]  time_minutes; // current time in seconds, 12/24
-	     logic 		hr_tick; 	// enable the hour counter
+	     logic 		  hr_tick; 	// enable the hour counter
 	timer_minutes timer_minutes(.*);
 
 		 logic [6:0]  time_hrs; // 24 hr format
-	     logic 		am_pm; 	// toggle am/pm
+	     logic 		  am_pm; 	// toggle am/pm
 	timer_hours   timer_hours(.*);
 
-		 logic [6:0]	time_hrs_f; // 12/24 formatted hours
+		 logic [6:0]  time_hrs_f; // 12/24 formatted hours
 	convert_24		convert_24(.*);
 
 	digit_select_sm digit_select_sm(.*);
@@ -37,7 +37,7 @@ module clock(
 	segment_mux		segment_mux(.*);
 
         logic [6:0] segment_decimal;
-    segment_code        segment_code(.*);
+    segment_code    segment_code(.*);
 
 endmodule // clock
 

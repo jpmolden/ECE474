@@ -5,5 +5,5 @@ report_timing
 report_cell
 report_reference -nosplit -hierarchy
 report_area
-write -format verilog -hierarchy -output clock.gate.v
+write -format verilog -hierarchy -output ./rtl_src/clock.gate.v
 quit

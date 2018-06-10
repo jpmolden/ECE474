@@ -30,7 +30,7 @@ modulename=clock
     if [ $# -eq 0 ]; then
         echo ""
         echo "INFO: no modeule argument given"
-        echo "USAGE: doit <module name> e.g doit mult"
+        echo "USAGE: doit <module name> e.g ./doit $modulename or ./doit $modulename&_tb"
         echo ""
         exit
     fi
@@ -66,11 +66,13 @@ modulename=clock
         echo ""
         echo "INFO: $1.do exists, .doing"
         echo ""
-        vsim $1 -do ./scripts/$1.do -quiet -c -t 1us
+        vsim $1 -do ./scripts/$1.do -quiet -novopt -c -t 1us
         # create a list file for comparison to the gate level lis
         # mv $1.list $1.rtl.list
         # Delete the vsim rtl list file
+        mv $1.list rtl.$1.list
         rm $1.list
+
     else
         echo ""
         echo "INFO: $1.do not found, exiting"
@@ -79,7 +81,7 @@ modulename=clock
     fi
 
 
-    echo "WARNING: THIS TAKES SEVERAL MINUTES"
+    echo "WARNING: This may take a some time if running the testbench"
     echo " "
     echo "Proceed with gate level sim and diff? y/n"
 
@@ -148,16 +150,24 @@ if [ $response == "y" ]; then
     mv output_data rtl.output_data
     rm output_data
 
+
+
     #statements
     # Run a simulation on the gate.v
-        vsim $1 -do ./scripts/$1.do -quiet -c +nowarnTFMPC +nowarnTSCALE -t 1us
+        vsim $1 -do ./scripts/$1.do -quiet -c +nowarnTFMPC +nowarnTSCALE -novopt -t 1us
         mv output_data gate.output_data
         rm output_data
+
+        mv $1.list gate.$1.list
+        rm $1.list
+
     # mv $1.list $1.gate.list
     # rm $1.list
 
     # Produce a diff report or message
-        diff gate.output_data rtl.output_data >| diff_report.txt
+    # Testbench only diff report
+    if [ -f gate.output_data ]; then
+    diff gate.output_data rtl.output_data >| diff_report.txt
         if [ $? -eq 0 ]; then
             echo ""
             echo "INFO: diff completed no diffs betweem RTL and GATE lists - SUCCESS"
@@ -167,4 +177,19 @@ if [ $response == "y" ]; then
             echo "INFO: diffs betweem RTL and GATE synthesis "
             diff gate.output_data rtl.output_data >| diff_report.txt
         fi
+    fi
+
+    # DO file diff report
+    if [ -f gate.$1.list ]; then
+        diff gate.$1.list gate.$1.list >| do_diff_report.txt
+        if [ $? -eq 0 ]; then
+            echo ""
+            echo "INFO: diff completed no diffs betweem RTL and GATE lists - SUCCESS"
+            echo "SUCCESS"
+            echo ""
+        else
+            echo "INFO: diffs betweem RTL and GATE synthesis "
+            diff gate.$1.list gate.$1.list >| do_diff_report.txt
+        fi
+    fi
 fi
